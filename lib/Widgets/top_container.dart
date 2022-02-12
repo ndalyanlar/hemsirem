@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/colors/light_colors.dart';
+import '../Theme/colors/light_colors.dart';
 
 class TopContainer extends StatelessWidget {
   final double? height;
@@ -19,7 +19,7 @@ class TopContainer extends StatelessWidget {
       padding:
           padding != null ? padding : EdgeInsets.symmetric(horizontal: 20.0),
       decoration: BoxDecoration(
-          color: LightColors.kDarkYellow,
+          color: LightColors.kLightRed3,
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(40.0),
             bottomLeft: Radius.circular(40.0),

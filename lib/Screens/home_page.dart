@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../Widgets/top_container.dart';
-import '../theme/colors/light_colors.dart';
+import '../Theme/colors/light_colors.dart';
 import '../widgets/active_project_card.dart';
 import '../widgets/task_column.dart';
 
@@ -35,81 +35,72 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: LightColors.kLightYellow,
+      backgroundColor: LightColors.kLightWhite,
       body: SafeArea(
         child: Column(
           children: <Widget>[
             TopContainer(
-              height: 200,
+              height: height * 0.3,
               width: width,
               padding: null,
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Icon(Icons.menu,
-                            color: LightColors.kDarkBlue, size: 30.0),
-                        Icon(Icons.search,
-                            color: LightColors.kDarkBlue, size: 25.0),
-                      ],
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  CircularPercentIndicator(
+                    radius: 70.0,
+                    lineWidth: 5.0,
+                    animation: true,
+                    percent: 1,
+                    circularStrokeCap: CircularStrokeCap.round,
+                    progressColor: LightColors.kLightYellow,
+                    backgroundColor: LightColors.kLightRed2,
+                    center: CircleAvatar(
+                      backgroundColor: LightColors.kBlue,
+                      radius: 35.0,
+                      backgroundImage: AssetImage(
+                        'assets/images/avatar.png',
+                      ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 0, vertical: 0.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          CircularPercentIndicator(
-                            radius: 90.0,
-                            lineWidth: 5.0,
-                            animation: true,
-                            percent: 0.75,
-                            circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: LightColors.kRed,
-                            backgroundColor: LightColors.kDarkYellow,
-                            center: CircleAvatar(
-                              backgroundColor: LightColors.kBlue,
-                              radius: 35.0,
-                              backgroundImage: AssetImage(
-                                'assets/images/avatar.png',
-                              ),
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text(
+                            'Sourav Suman',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: LightColors.kDarkBlue,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                child: Text(
-                                  'Sourav Suman',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 22.0,
-                                    color: LightColors.kDarkBlue,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                child: Text(
-                                  'App Developer',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ]),
+                        ),
+                        Container(
+                          child: Text(
+                            '28, Ankara',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black45,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(
