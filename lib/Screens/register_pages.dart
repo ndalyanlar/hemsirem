@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hemsirem/Constant/page_names.dart';
 import 'package:hemsirem/Core/login_modal_view.dart';
 
 import '../Constant/firestore_constant.dart';
@@ -29,6 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
     super.didChangeDependencies();
   }
 
+  bool loading = false;
   final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerSurName = TextEditingController();
   final TextEditingController _controllerAge = TextEditingController();
@@ -67,14 +69,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           pass: true),
                       buildtextField("Şifre tekrar girin", _controllerPass2,
                           pass: true),
-                      buildSignInButton(
-                          name: _controllerName,
-                          surname: _controllerSurName,
-                          tel: _controllerTel,
-                          pass1: _controllerPass1,
-                          pass2: _controllerPass2,
-                          screenArguments: who,
-                          age: _controllerAge),
+                      loading
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : buildSignInButton(
+                              name: _controllerName,
+                              surname: _controllerSurName,
+                              tel: _controllerTel,
+                              pass1: _controllerPass1,
+                              pass2: _controllerPass2,
+                              screenArguments: who,
+                              age: _controllerAge),
                     ],
                   )),
             ),
@@ -95,8 +101,11 @@ class _RegisterPageState extends State<RegisterPage> {
   }) {
     return TextButton(
         onPressed: () async {
-          bool isOk = _formKey.currentState!.validate();
-          if (isOk) {
+          setState(() {
+            loading = _formKey.currentState!.validate();
+          });
+
+          if (loading) {
             User user = User(
                 name: name.text,
                 surName: surname.text,
@@ -105,10 +114,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 age: age.text != "" ? int.parse(age.text) : 0);
 
             if (screenArguments.role == Who.HASTA.name) {
-              await FirebaseDocName().addUser(type: "patients", user: user);
+              await FirebaseDocName().addUser(
+                  type: "patients",
+                  user: user,
+                  phoneNumber: _controllerTel.text);
             } else {
-              await FirebaseDocName().addUser(type: "nurses", user: user);
+              await FirebaseDocName().addUser(
+                  type: "nurses", user: user, phoneNumber: _controllerTel.text);
             }
+
+            Navigator.pushReplacementNamed(context, PageNames.kHomeScreenName);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text('Lütfen bilgileri kontrol ediniz'),
@@ -140,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
         decoration: BoxDecoration(
             color: LightColors.kLightWhite,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                   color: Colors.black12, blurRadius: 20, offset: Offset(0, 10))
             ]),
@@ -160,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 }
               : isPhone ?? false
                   ? (value) {
-                      if (value!.length != 13) {
+                      if (value!.length != 11) {
                         return 'Telefon numaranı kontrol et';
                       }
                       return null;
@@ -171,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
           controller: textEditingController,
           decoration: InputDecoration(
               hintText: type,
-              hintStyle: TextStyle(color: Colors.black26),
+              hintStyle: const TextStyle(color: Colors.black26),
               border: InputBorder.none),
         ),
       ),

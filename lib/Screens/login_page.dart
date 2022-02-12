@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:hemsirem/Constant/firestore_constant.dart';
+import 'package:hemsirem/Model/user.dart';
 import '../Model/register_page_arg.dart';
 import '../Constant/page_names.dart';
 import '../Core/login_modal_view.dart';
@@ -9,6 +15,9 @@ import '../Theme/colors/light_colors.dart';
 import '../Theme/theme.dart';
 
 final loginStatusProvider = ChangeNotifierProvider(((ref) => LoginModelView()));
+
+TextEditingController _controllerPhone = TextEditingController();
+TextEditingController _controllerPass = TextEditingController();
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -172,6 +181,13 @@ class BuildForm extends ConsumerStatefulWidget {
 
 class _BuildFormState extends ConsumerState<BuildForm> {
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _controllerPhone.text = "+90";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = ref.watch(loginStatusProvider);
@@ -200,13 +216,14 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9, +]')),
                 LengthLimitingTextInputFormatter(13)
               ],
+              controller: _controllerPhone,
               validator: (value) {
                 if (value!.length != 13) {
                   return 'Telefon numaranı kontrol et';
                 }
                 return null;
               },
-              initialValue: "+90",
+              // initialValue: "+90",
               decoration: InputDecoration(
                   errorStyle: TextStyle(fontSize: 12),
                   labelText: "Telefon Numarasi Giriniz",
@@ -247,6 +264,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                 }
                 return null;
               },
+              controller: _controllerPass,
               onSaved: (value) {
                 provider.password = value!;
               },
@@ -273,17 +291,76 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                 "Giriş",
                 style: AppTheme.LoginPageButtonsTextStyle,
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Giriş Yapılıyor')));
                   _formKey.currentState!.save();
 
-                  auth.registerUser(provider.telephone, context);
+                  DocumentSnapshot data;
+                  // DocumentSnapshot data = await FirebaseFirestore.instance
+                  //     .collection("patients")
+                  //     .doc(_controllerPhone.text)
+                  //     .get();
+                  switch (provider.whoIs) {
+                    case Who.HASTA:
+                      data = await FirebaseDocName().getUser(
+                          type: Who.HASTA.firebaseCollectionName,
+                          phoneNumber:
+                              provider.telephone.replaceAll("+9", "").trim());
+                      break;
+                    case Who.HEMSIRE:
+                      data = await FirebaseDocName().getUser(
+                          type: Who.HEMSIRE.firebaseCollectionName,
+                          phoneNumber:
+                              provider.telephone.replaceAll("+9", "").trim());
+                      break;
+                  }
+
+                  User user = ((data.data() ??
+                      User(
+                          name: "",
+                          surName: "",
+                          phone: "",
+                          password: "",
+                          age: 0)) as User);
+
+                  if (user.password == _controllerPass.text &&
+                      _controllerPhone.text.contains(user.phone)) {
+                    await auth.registerUser(provider.telephone, context);
+                    log("success");
+                  } else {
+                    // ScaffoldMessenger.of(context).showMaterialBanner(
+                    //     MaterialBanner(content: context, actions: []));
+                  }
+
+                  // auth.registerUser(provider.telephone, context);
                 }
               }),
         ],
       ),
     );
+  }
+}
+
+class Navigation {
+  static GlobalKey<NavigatorState> navigationKey = GlobalKey();
+}
+
+class OverlayHelper {
+  static final OverlayHelper instance = OverlayHelper();
+  final overlayState = Overlay.of(Navigation.navigationKey.currentContext!);
+  final overlayEntry = OverlayEntry(
+      builder: (context) => Container(
+            color: Colors.black38,
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator.adaptive(),
+          ));
+  Future<void> showOverlay() async {
+    overlayState?.insert(overlayEntry);
+  }
+
+  Future<void> closeOverlay() async {
+    overlayEntry.remove();
   }
 }

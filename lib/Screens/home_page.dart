@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../Widgets/top_container.dart';
 import '../Theme/colors/light_colors.dart';
@@ -52,22 +51,22 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: height * 0.05,
                   ),
-                  CircularPercentIndicator(
-                    radius: 70.0,
-                    lineWidth: 5.0,
-                    animation: true,
-                    percent: 1,
-                    circularStrokeCap: CircularStrokeCap.round,
-                    progressColor: LightColors.kLightYellow,
-                    backgroundColor: LightColors.kLightRed2,
-                    center: CircleAvatar(
-                      backgroundColor: LightColors.kBlue,
-                      radius: 35.0,
-                      backgroundImage: AssetImage(
-                        'assets/images/avatar.png',
-                      ),
-                    ),
-                  ),
+                  // CircularPercentIndicator(
+                  //   radius: 70.0,
+                  //   lineWidth: 5.0,
+                  //   animation: true,
+                  //   percent: 1,
+                  //   circularStrokeCap: CircularStrokeCap.round,
+                  //   progressColor: LightColors.kLightYellow,
+                  //   backgroundColor: LightColors.kLightRed2,
+                  //   center: CircleAvatar(
+                  //     backgroundColor: LightColors.kBlue,
+                  //     radius: 35.0,
+                  //     backgroundImage: AssetImage(
+                  //       'assets/images/avatar.png',
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: height * 0.02,
                   ),

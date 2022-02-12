@@ -9,7 +9,6 @@ class LightColors {
   static Color kLightRed4 = Colors.red.shade400;
   static Color kLightRed3 = Colors.red.shade300;
   static Color kLightRed2 = Colors.red.shade200;
-
   static const Color kRed = Color(0xFFE46472);
   static const Color kLavender = Color(0xFFD5E4FE);
   static const Color kBlue = Color(0xFF6488E4);

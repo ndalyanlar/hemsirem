@@ -9,4 +9,13 @@ extension WhoExtension on Who {
         return 'HEMŞİRE';
     }
   }
+
+  String get firebaseCollectionName {
+    switch (this) {
+      case Who.HASTA:
+        return 'patients';
+      case Who.HEMSIRE:
+        return 'nurses';
+    }
+  }
 }

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hemsirem/Constant/page_names.dart';
 
 class LoginModelView extends ChangeNotifier {
   late String telephone;
@@ -65,11 +66,8 @@ class Auth extends ChangeNotifier {
                             auth
                                 .signInWithCredential(_credential)
                                 .then((UserCredential result) {
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             HomeScreen(result.user)));
+                              Navigator.pushReplacementNamed(
+                                  context, PageNames.kHomeScreenName);
                             }).catchError((e) {
                               print(e);
                             });
@@ -102,11 +100,8 @@ class Auth extends ChangeNotifier {
                             auth
                                 .signInWithCredential(_credential)
                                 .then((UserCredential result) {
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             HomeScreen(result.user)));
+                              Navigator.pushReplacementNamed(
+                                  context, PageNames.kHomeScreenName);
                             }).catchError((e) {
                               print(e);
                             });

@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: Navigation.navigationKey,
       routes: {
         PageNames.kHomeScreenName: (context) => HomePage(),
         PageNames.kRegisterScreenName: (context) => RegisterPage(),

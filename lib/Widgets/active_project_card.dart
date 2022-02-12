@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 class ActiveProjectsCard extends StatelessWidget {
   final Color cardColor;
@@ -32,20 +31,20 @@ class ActiveProjectsCard extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: CircularPercentIndicator(
-                animation: true,
-                radius: 75.0,
-                percent: loadingPercent,
-                lineWidth: 5.0,
-                circularStrokeCap: CircularStrokeCap.round,
-                backgroundColor: Colors.white10,
-                progressColor: Colors.white,
-                center: Text(
-                  '${(loadingPercent * 100).round()}%',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700, color: Colors.white),
-                ),
-              ),
+              // child: CircularPercentIndicator(
+              //   animation: true,
+              //   radius: 75.0,
+              //   percent: loadingPercent,
+              //   lineWidth: 5.0,
+              //   circularStrokeCap: CircularStrokeCap.round,
+              //   backgroundColor: Colors.white10,
+              //   progressColor: Colors.white,
+              //   center: Text(
+              //     '${(loadingPercent * 100).round()}%',
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.w700, color: Colors.white),
+              //   ),
+              // ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
