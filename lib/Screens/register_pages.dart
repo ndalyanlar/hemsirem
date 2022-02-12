@@ -1,9 +1,6 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hemsirem/Constant/page_names.dart';
 import 'package:hemsirem/Core/login_modal_view.dart';
 
@@ -13,7 +10,7 @@ import '../Model/user.dart';
 import '../Theme/colors/light_colors.dart';
 import '../Theme/theme.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +19,7 @@ class RegisterPage extends StatefulWidget {
 
 final _formKey = GlobalKey<FormState>();
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   late ScreenArguments who;
   @override
   void didChangeDependencies() {
@@ -41,6 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = ref.watch(authProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text("${who.role} Kayıt Formu"),
@@ -80,7 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               pass1: _controllerPass1,
                               pass2: _controllerPass2,
                               screenArguments: who,
-                              age: _controllerAge),
+                              age: _controllerAge,
+                              auth: auth),
                     ],
                   )),
             ),
@@ -98,6 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
     required TextEditingController pass1,
     required TextEditingController pass2,
     required ScreenArguments screenArguments,
+    required Auth auth,
   }) {
     return TextButton(
         onPressed: () async {
@@ -122,8 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
               await FirebaseDocName().addUser(
                   type: "nurses", user: user, phoneNumber: _controllerTel.text);
             }
-
-            Navigator.pushReplacementNamed(context, PageNames.kHomeScreenName);
+            auth.registerUser("+9${user.phone}", context);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text('Lütfen bilgileri kontrol ediniz'),

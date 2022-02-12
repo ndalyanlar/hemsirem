@@ -18,7 +18,7 @@ void main() async {
     statusBarColor: LightColors.kStatusBarCcolor, // status bar color
   ));
 
-  return runApp(MyApp());
+  return runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

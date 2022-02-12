@@ -24,39 +24,37 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: Scaffold(
-          body: Container(
-        width: double.infinity,
-        color: LightColors.kLightWhite,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-            ),
-            Padding(
-                padding: const EdgeInsets.only(left: 32),
-                child: Text(
-                  "Giriş",
-                  style: TextStyle(color: Colors.black38, fontSize: 48),
-                )),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.015),
-            Padding(
-              padding: const EdgeInsets.only(left: 32.0),
+    return Scaffold(
+        body: Container(
+      width: double.infinity,
+      color: LightColors.kLightWhite,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
+          Padding(
+              padding: const EdgeInsets.only(left: 32),
               child: Text(
-                "Hoş Geldiniz!",
-                style: TextStyle(color: Colors.black38, fontSize: 24),
-              ),
+                "Giriş",
+                style: TextStyle(color: Colors.black38, fontSize: 48),
+              )),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+          Padding(
+            padding: const EdgeInsets.only(left: 32.0),
+            child: Text(
+              "Hoş Geldiniz!",
+              style: TextStyle(color: Colors.black38, fontSize: 24),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.045,
-            ),
-            buildMain()
-          ],
-        ),
-      )),
-    );
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.045,
+          ),
+          buildMain()
+        ],
+      ),
+    ));
   }
 
   Expanded buildMain() {
