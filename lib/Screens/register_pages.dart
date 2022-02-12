@@ -1,6 +1,10 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hemsirem/Core/login_modal_view.dart';
 
 import '../Constant/firestore_constant.dart';
 import '../Model/register_page_arg.dart';
@@ -14,6 +18,8 @@ class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
+
+final _formKey = GlobalKey<FormState>();
 
 class _RegisterPageState extends State<RegisterPage> {
   late ScreenArguments who;
@@ -43,26 +49,34 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Align(
             alignment: AlignmentDirectional.topCenter,
             child: SingleChildScrollView(
+              physics: MediaQuery.of(context).viewInsets.bottom != 0
+                  ? const BouncingScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
               child: Form(
+                  key: _formKey,
                   child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  buildtextField("İsim girin", _controllerName),
-                  buildtextField("Soyad girin", _controllerSurName),
-                  buildtextField("Yaşınızı girin", _controllerAge),
-                  buildtextField("Telefon girin", _controllerTel),
-                  buildtextField("Şifre girin", _controllerPass1),
-                  buildtextField("Şifre tekrar girin", _controllerPass2),
-                  buildSignInButton(
-                      name: _controllerName,
-                      surname: _controllerSurName,
-                      tel: _controllerTel,
-                      pass1: _controllerPass1,
-                      pass2: _controllerPass2,
-                      screenArguments: who,
-                      age: _controllerAge),
-                ],
-              )),
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      buildtextField("İsim girin", _controllerName),
+                      buildtextField("Soyad girin", _controllerSurName),
+                      buildtextField("Yaşınızı girin", _controllerAge,
+                          isNum: true),
+                      buildtextField("Telefon girin", _controllerTel,
+                          isNum: true, isPhone: true),
+                      buildtextField("Şifre girin", _controllerPass1,
+                          pass: true),
+                      buildtextField("Şifre tekrar girin", _controllerPass2,
+                          pass: true),
+                      buildSignInButton(
+                          name: _controllerName,
+                          surname: _controllerSurName,
+                          tel: _controllerTel,
+                          pass1: _controllerPass1,
+                          pass2: _controllerPass2,
+                          screenArguments: who,
+                          age: _controllerAge),
+                    ],
+                  )),
             ),
           ),
         ),
@@ -81,27 +95,33 @@ class _RegisterPageState extends State<RegisterPage> {
   }) {
     return TextButton(
         onPressed: () async {
-          User user = User(
-              name: name.text,
-              surName: surname.text,
-              phone: tel.text,
-              password: pass1.text,
-              age: int.parse(age.text));
-          if (screenArguments.role == "HASTA") {
-            String key = FirebaseDocName().patientDocID;
-            await FirebaseDocName().getUserRef(key).doc().set(user);
+          bool isOk = _formKey.currentState!.validate();
+          if (isOk) {
+            User user = User(
+                name: name.text,
+                surName: surname.text,
+                phone: tel.text,
+                password: pass1.text,
+                age: age.text != "" ? int.parse(age.text) : 0);
+
+            if (screenArguments.role == Who.HASTA.name) {
+              await FirebaseDocName().addUser(type: "patients", user: user);
+            } else {
+              await FirebaseDocName().addUser(type: "nurses", user: user);
+            }
           } else {
-            String key = FirebaseDocName().nurseDocID;
-            await FirebaseDocName().getUserRef(key).doc().set(user);
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Lütfen bilgileri kontrol ediniz'),
+              backgroundColor: LightColors.kSnackbarBGColor,
+            ));
           }
-          log("success");
         },
         child: Container(
           decoration: BoxDecoration(
               color: LightColors.kDarkBlue,
               borderRadius: BorderRadiusDirectional.circular(10)),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text(
               "Kayıt Ol",
               style: AppTheme.buttonRegisterTextStyle,
@@ -111,7 +131,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget buildtextField(
-      String type, TextEditingController textEditingController) {
+      String type, TextEditingController textEditingController,
+      {bool? isNum, bool? pass, bool? isPhone}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -124,6 +145,29 @@ class _RegisterPageState extends State<RegisterPage> {
                   color: Colors.black12, blurRadius: 20, offset: Offset(0, 10))
             ]),
         child: TextFormField(
+          inputFormatters: isPhone ?? false
+              ? [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  LengthLimitingTextInputFormatter(11)
+                ]
+              : null,
+          validator: pass ?? false
+              ? (value) {
+                  if (value == null || value.isEmpty || value.length < 8) {
+                    return 'Lütfen şifrenizi giriniz!';
+                  }
+                  return null;
+                }
+              : isPhone ?? false
+                  ? (value) {
+                      if (value!.length != 13) {
+                        return 'Telefon numaranı kontrol et';
+                      }
+                      return null;
+                    }
+                  : null,
+          obscureText: pass ?? false,
+          keyboardType: isNum ?? false ? TextInputType.number : null,
           controller: textEditingController,
           decoration: InputDecoration(
               hintText: type,

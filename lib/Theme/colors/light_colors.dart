@@ -17,4 +17,5 @@ class LightColors {
   static const Color kGreen = Color(0xFF309397);
   static const Color kStatusBarCcolor = Color(0xffffb969);
   static const Color kDarkBlue = Color(0xFF0D253F);
+  static const Color kSnackbarBGColor = Color(0xFFE71506);
 }
