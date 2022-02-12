@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "920298382706",
+    "project_id": "hemsirem-1",
+    "storage_bucket": "hemsirem-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920298382706:android:f92bfe6fb9a57365dae9eb",
+        "android_client_info": {
+          "package_name": "com.example.hemsirem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920298382706-7uuggod7ju88lpp7f9buga3ltv6du8sj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1D3VAMpsxaqTiUKvV6rs_JVzqPU3UAaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920298382706-7uuggod7ju88lpp7f9buga3ltv6du8sj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "920298382706-78li8tdqkr1n3djujqbtiqdlj7le3o8g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hemsirem"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
