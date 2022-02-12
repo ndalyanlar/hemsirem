@@ -40,6 +40,12 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerPass2 = TextEditingController();
 
   @override
+  void initState() {
+    _controllerTel.text = "05";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -102,7 +108,8 @@ class _RegisterPageState extends State<RegisterPage> {
     return TextButton(
         onPressed: () async {
           setState(() {
-            loading = _formKey.currentState!.validate();
+            loading = (_formKey.currentState!.validate() &&
+                _controllerPass1.text == _controllerPass2.text);
           });
 
           if (loading) {
@@ -185,6 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
           keyboardType: isNum ?? false ? TextInputType.number : null,
           controller: textEditingController,
           decoration: InputDecoration(
+              label: Text(type),
               hintText: type,
               hintStyle: const TextStyle(color: Colors.black26),
               border: InputBorder.none),
