@@ -9,18 +9,7 @@ import '../Widgets/task_column.dart';
 
 import 'calendar_page.dart';
 
-class HomePage extends StatelessWidget {
-  Text subheading(String title) {
-    return Text(
-      title,
-      style: TextStyle(
-          color: LightColors.kDarkBlue,
-          fontSize: 20.0,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 1.2),
-    );
-  }
-
+class HomePage extends StatefulWidget {
   static CircleAvatar calendarIcon() {
     return CircleAvatar(
       radius: 25.0,
@@ -34,8 +23,30 @@ class HomePage extends StatelessWidget {
   }
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late MyUser user;
+  @override
+  void didChangeDependencies() {
+    user = ModalRoute.of(context)!.settings.arguments as MyUser;
+    super.didChangeDependencies();
+  }
+
+  Text subheading(String title) {
+    return Text(
+      title,
+      style: TextStyle(
+          color: LightColors.kDarkBlue,
+          fontSize: 20.0,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.2),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var user = ModalRoute.of(context)!.settings.arguments as MyUser;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -78,7 +89,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         Container(
                           child: Text(
-                            'Sourav Suman',
+                            "${user.name} ${user.surName}",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 22.0,
@@ -89,7 +100,7 @@ class HomePage extends StatelessWidget {
                         ),
                         Container(
                           child: Text(
-                            '28, Ankara',
+                            "${user.age}",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 16.0,
@@ -127,7 +138,7 @@ class HomePage extends StatelessWidget {
                                         builder: (context) => CalendarPage()),
                                   );
                                 },
-                                child: calendarIcon(),
+                                child: HomePage.calendarIcon(),
                               ),
                             ],
                           ),

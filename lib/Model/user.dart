@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-class User {
+class MyUser {
   String name;
   String surName;
   String password;
   String phone;
   int age;
-  User(
+  MyUser(
       {required this.name,
       required this.surName,
       required this.phone,
@@ -22,8 +22,8 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory MyUser.fromMap(Map<String, dynamic> map) {
+    return MyUser(
       age: map["age"] ?? 0,
       name: map['name'] ?? '',
       surName: map['surName'] ?? '',
@@ -34,5 +34,5 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+  factory MyUser.fromJson(String source) => MyUser.fromMap(json.decode(source));
 }

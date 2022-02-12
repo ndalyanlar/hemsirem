@@ -321,11 +321,15 @@ class _BuildFormState extends ConsumerState<BuildForm> {
 
                   if (user.password == _controllerPass.text &&
                       _controllerPhone.text.contains(user.phone)) {
-                    await auth.registerUser(
-                      user,
-                      provider.telephone,
-                      context,
-                    );
+                    // await auth.registerUser(
+                    //   user,
+                    //   provider.telephone,
+                    //   context,
+                    // );
+
+                    Navigator.pushReplacementNamed(
+                        context, PageNames.kHomeScreenName,
+                        arguments: user);
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       dismissDirection: DismissDirection.startToEnd,
                       content: Center(

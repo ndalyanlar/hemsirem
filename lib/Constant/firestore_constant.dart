@@ -10,13 +10,13 @@ class FirebaseDocName {
 
   Future<void> addUser(
       {required String type,
-      required User user,
+      required MyUser user,
       required String phoneNumber}) async {
     await FirebaseFirestore.instance
         .collection(type)
-        .withConverter<User>(
+        .withConverter<MyUser>(
           fromFirestore: (snapshots, _) =>
-              User.fromJson(jsonEncode(snapshots.data())),
+              MyUser.fromJson(jsonEncode(snapshots.data())),
           toFirestore: (user, _) => jsonDecode(user.toJson()),
         )
         .doc(phoneNumber)
@@ -27,9 +27,9 @@ class FirebaseDocName {
       {required String type, required String phoneNumber}) async {
     return await FirebaseFirestore.instance
         .collection(type)
-        .withConverter<User>(
+        .withConverter<MyUser>(
           fromFirestore: (snapshots, _) =>
-              User.fromJson(jsonEncode(snapshots.data())),
+              MyUser.fromJson(jsonEncode(snapshots.data())),
           toFirestore: (user, _) => jsonDecode(user.toJson()),
         )
         .doc(phoneNumber)
