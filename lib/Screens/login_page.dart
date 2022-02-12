@@ -313,17 +313,21 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                       break;
                   }
 
-                  User user = ((data.data() ??
-                      User(
+                  MyUser user = ((data.data() ??
+                      MyUser(
                           name: "",
                           surName: "",
                           phone: "",
                           password: "",
-                          age: 0)) as User);
+                          age: 0)) as MyUser);
 
                   if (user.password == _controllerPass.text &&
                       _controllerPhone.text.contains(user.phone)) {
-                    await auth.registerUser(provider.telephone, context);
+                    await auth.registerUser(
+                      user,
+                      provider.telephone,
+                      context,
+                    );
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       dismissDirection: DismissDirection.startToEnd,
                       content: Center(

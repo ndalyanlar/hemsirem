@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       buildtextField("Şifre tekrar girin", _controllerPass2,
                           pass: true),
                       loading
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(),
                             )
                           : buildSignInButton(
@@ -113,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
           });
 
           if (loading) {
-            User user = User(
+            MyUser user = MyUser(
                 name: name.text,
                 surName: surname.text,
                 phone: tel.text,

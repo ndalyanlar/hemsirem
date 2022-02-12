@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hemsirem/Model/user.dart';
 
 import '../Widgets/top_container.dart';
 import '../Theme/colors/light_colors.dart';
@@ -33,6 +35,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var user = ModalRoute.of(context)!.settings.arguments as MyUser;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
