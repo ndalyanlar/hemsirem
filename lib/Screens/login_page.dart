@@ -6,6 +6,7 @@ import '../Constant/page_names.dart';
 import '../Core/login_modal_view.dart';
 import '../Extension/who_extension.dart';
 import '../Theme/colors/light_colors.dart';
+import '../Theme/theme.dart';
 
 final loginStatusProvider = ChangeNotifierProvider(((ref) => LoginModelView()));
 
@@ -98,14 +99,8 @@ class LoginPage extends StatelessWidget {
   ElevatedButton buildRegisterButton(
       LoginModelView provider, Who hastaRole, BuildContext context) {
     return ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.white70),
-          fixedSize: MaterialStateProperty.all(Size.fromWidth(200)),
-        ),
-        child: Text(
-          "Kayıt Ol",
-          style: TextStyle(color: Colors.red.shade300, fontSize: 22),
-        ),
+        style: AppTheme.loginPageButtonStyle,
+        child: Text("Kayıt Ol", style: AppTheme.LoginPageButtonsTextStyle),
         onPressed: () {
           Navigator.pushNamed(context, PageNames.kRegisterScreenName,
               arguments: ScreenArguments(provider.whoIs.name));
@@ -273,13 +268,10 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white70),
-                fixedSize: MaterialStateProperty.all(Size.fromWidth(200)),
-              ),
+              style: AppTheme.loginPageButtonStyle,
               child: Text(
                 "Giriş",
-                style: TextStyle(color: Colors.red.shade300, fontSize: 22),
+                style: AppTheme.LoginPageButtonsTextStyle,
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

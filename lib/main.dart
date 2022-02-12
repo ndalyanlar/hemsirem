@@ -7,6 +7,7 @@ import 'Constant/page_names.dart';
 import 'Screens/home_page.dart';
 import 'Screens/login_page.dart';
 import 'Screens/register_pages.dart';
+import 'Theme/theme.dart';
 import 'theme/colors/light_colors.dart';
 
 void main() async {
@@ -32,9 +33,7 @@ class MyApp extends StatelessWidget {
       },
       title: 'Hemsirem',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: LightColors.kDarkBlue,
-        ),
+        appBarTheme: AppTheme.appBarTheme,
         primarySwatch: Colors.blue,
         textTheme: Theme.of(context).textTheme.apply(
             bodyColor: LightColors.kDarkBlue,
