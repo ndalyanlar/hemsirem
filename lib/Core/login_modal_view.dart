@@ -104,7 +104,7 @@ class Auth extends ChangeNotifier {
                                 .then((UserCredential result) {
                               Navigator.pushReplacementNamed(
                                   context, PageNames.kHomeScreenName,
-                                  arguments: [user]);
+                                  arguments: user);
                             }).catchError((e) {
                               print(e);
                             });

@@ -24,37 +24,37 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
+        backgroundColor: LightColors.kLightRed2,
         body: Container(
-      width: double.infinity,
-      color: LightColors.kLightWhite,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
+          width: double.infinity,
+          color: LightColors.kLightWhite2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: height * 0.1),
+              Padding(
+                  padding: const EdgeInsets.only(left: 32),
+                  child: Text(
+                    "Giriş",
+                    style: TextStyle(
+                        color: LightColors.kLoginTextColor, fontSize: 48),
+                  )),
+              SizedBox(height: height * 0.015),
+              Padding(
+                padding: const EdgeInsets.only(left: 32.0),
+                child: Text(
+                  "Hoş Geldiniz!",
+                  style: TextStyle(
+                      color: LightColors.kLoginTextColor, fontSize: 24),
+                ),
+              ),
+              SizedBox(height: height * 0.045),
+              buildMain()
+            ],
           ),
-          Padding(
-              padding: const EdgeInsets.only(left: 32),
-              child: Text(
-                "Giriş",
-                style: TextStyle(color: Colors.black38, fontSize: 48),
-              )),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.015),
-          Padding(
-            padding: const EdgeInsets.only(left: 32.0),
-            child: Text(
-              "Hoş Geldiniz!",
-              style: TextStyle(color: Colors.black38, fontSize: 24),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.045,
-          ),
-          buildMain()
-        ],
-      ),
-    ));
+        ));
   }
 
   Expanded buildMain() {
@@ -62,14 +62,15 @@ class LoginPage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-              Colors.red.shade200,
-              Colors.red.shade300,
-              Colors.red.shade400
+              LightColors.kLightRed2,
+              LightColors.kLightRed3,
+              LightColors.kLightRed4
             ]),
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(60), topRight: Radius.circular(60))),
+                topLeft: Radius.circular(AppTheme.loginPageborderRadius),
+                topRight: Radius.circular(AppTheme.loginPageborderRadius))),
         child: Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20.0, right: 20.0),
+          padding: const EdgeInsets.only(top: 20, left: 20.0, right: 20.0),
           child: SingleChildScrollView(
             child: Consumer(
               builder: (context, ref, child) {
@@ -123,8 +124,11 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8, right: 8, bottom: 5),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadiusDirectional.circular(16),
-              color: provider.whoIs == hastaRole ? Colors.black45 : null,
+              borderRadius: BorderRadiusDirectional.circular(
+                  AppTheme.loginPageborderRadius),
+              color: provider.whoIs == hastaRole
+                  ? LightColors.kLoginTextColor
+                  : null,
             ),
             child: TextButton(
                 onPressed: () {
@@ -134,8 +138,8 @@ class LoginPage extends StatelessWidget {
                   Who.HASTA.name,
                   style: TextStyle(
                       color: provider.whoIs == hastaRole
-                          ? Colors.white70
-                          : Colors.black),
+                          ? LightColors.kLightWhite2
+                          : LightColors.kLoginTextColor),
                 )),
           ),
         )),
@@ -149,8 +153,11 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8, right: 8, bottom: 5),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadiusDirectional.circular(16),
-              color: provider.whoIs == hemsireRole ? Colors.black45 : null,
+              borderRadius: BorderRadiusDirectional.circular(
+                  AppTheme.loginPageborderRadius),
+              color: provider.whoIs == hemsireRole
+                  ? LightColors.kLoginTextColor
+                  : null,
             ),
             child: TextButton(
                 onPressed: () {
@@ -159,8 +166,8 @@ class LoginPage extends StatelessWidget {
                 child: Text(Who.HEMSIRE.name,
                     style: TextStyle(
                         color: provider.whoIs == hemsireRole
-                            ? Colors.white70
-                            : Colors.black))),
+                            ? LightColors.kLightWhite2
+                            : LightColors.kLoginTextColor))),
           ),
         ))
       ],
@@ -188,6 +195,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     final provider = ref.watch(loginStatusProvider);
     final auth = ref.watch(authProvider);
     return Form(
@@ -200,8 +208,9 @@ class _BuildFormState extends ConsumerState<BuildForm> {
           Container(
             padding: EdgeInsets.only(right: 15, left: 15, top: 0, bottom: 0),
             decoration: BoxDecoration(
-                color: Colors.white70,
-                borderRadius: BorderRadius.circular(10),
+                color: LightColors.kLightWhite2,
+                borderRadius:
+                    BorderRadius.circular(AppTheme.loginPageborderRadius),
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black12,
@@ -221,7 +230,6 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                 }
                 return null;
               },
-              // initialValue: "+90",
               decoration: InputDecoration(
                   errorStyle: TextStyle(fontSize: 12),
                   labelText: "Telefon Numarasi Giriniz",
@@ -236,7 +244,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.025,
+            height: height * 0.025,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
@@ -269,7 +277,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: height * 0.02,
           ),
           TextButton(
               style: ButtonStyle(
@@ -278,10 +286,10 @@ class _BuildFormState extends ConsumerState<BuildForm> {
               onPressed: () {},
               child: Text(
                 "Şifremi Unuttum.",
-                style: TextStyle(color: Colors.white60, fontSize: 16),
+                style: TextStyle(color: LightColors.kLightWhite2, fontSize: 16),
               )),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
+            height: height * 0.02,
           ),
           ElevatedButton(
               style: AppTheme.loginPageButtonStyle,
@@ -360,27 +368,5 @@ class _BuildFormState extends ConsumerState<BuildForm> {
         ],
       ),
     );
-  }
-}
-
-class Navigation {
-  static GlobalKey<NavigatorState> navigationKey = GlobalKey();
-}
-
-class OverlayHelper {
-  static final OverlayHelper instance = OverlayHelper();
-  final overlayState = Overlay.of(Navigation.navigationKey.currentContext!);
-  final overlayEntry = OverlayEntry(
-      builder: (context) => Container(
-            color: Colors.black38,
-            alignment: Alignment.center,
-            child: const CircularProgressIndicator.adaptive(),
-          ));
-  Future<void> showOverlay() async {
-    overlayState?.insert(overlayEntry);
-  }
-
-  Future<void> closeOverlay() async {
-    overlayEntry.remove();
   }
 }

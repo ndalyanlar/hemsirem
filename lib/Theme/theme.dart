@@ -19,6 +19,8 @@ class AppTheme {
     centerTitle: true,
   );
 
+  static double loginPageborderRadius = 30;
+
   static ButtonStyle loginPageButtonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.white70),
       fixedSize: MaterialStateProperty.all(Size.fromWidth(200)));
