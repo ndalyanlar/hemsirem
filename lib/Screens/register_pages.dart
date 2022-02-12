@@ -1,5 +1,5 @@
 import 'dart:developer';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../Constant/firestore_constant.dart';
@@ -25,7 +25,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerSurName = TextEditingController();
+  final TextEditingController _controllerAge = TextEditingController();
   final TextEditingController _controllerTel = TextEditingController();
+
   final TextEditingController _controllerPass1 = TextEditingController();
   final TextEditingController _controllerPass2 = TextEditingController();
 
@@ -38,24 +40,31 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Center(
         child: Padding(
           padding: AppTheme.pagePadding,
-          child: Form(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              buildtextField("İsim girin", _controllerName),
-              buildtextField("Soyad girin", _controllerSurName),
-              buildtextField("Telefon girin", _controllerTel),
-              buildtextField("Şifre girin", _controllerPass1),
-              buildtextField("Şifre tekrar girin", _controllerPass2),
-              buildSignInButton(
-                name: _controllerName,
-                surname: _controllerSurName,
-                tel: _controllerTel,
-                pass1: _controllerPass1,
-                pass2: _controllerPass2,
-              ),
-            ],
-          )),
+          child: Align(
+            alignment: AlignmentDirectional.topCenter,
+            child: SingleChildScrollView(
+              child: Form(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  buildtextField("İsim girin", _controllerName),
+                  buildtextField("Soyad girin", _controllerSurName),
+                  buildtextField("Yaşınızı girin", _controllerAge),
+                  buildtextField("Telefon girin", _controllerTel),
+                  buildtextField("Şifre girin", _controllerPass1),
+                  buildtextField("Şifre tekrar girin", _controllerPass2),
+                  buildSignInButton(
+                      name: _controllerName,
+                      surname: _controllerSurName,
+                      tel: _controllerTel,
+                      pass1: _controllerPass1,
+                      pass2: _controllerPass2,
+                      screenArguments: who,
+                      age: _controllerAge),
+                ],
+              )),
+            ),
+          ),
         ),
       ),
     );
@@ -64,20 +73,28 @@ class _RegisterPageState extends State<RegisterPage> {
   TextButton buildSignInButton({
     required TextEditingController name,
     required TextEditingController surname,
+    required TextEditingController age,
     required TextEditingController tel,
     required TextEditingController pass1,
     required TextEditingController pass2,
+    required ScreenArguments screenArguments,
   }) {
     return TextButton(
         onPressed: () async {
           User user = User(
-            name: name.text,
-            surName: surname.text,
-            phone: tel.text,
-            password: pass1.text,
-          );
-          // await FirebaseDocName.userRef.doc().set(user);
-          // log("success");
+              name: name.text,
+              surName: surname.text,
+              phone: tel.text,
+              password: pass1.text,
+              age: int.parse(age.text));
+          if (screenArguments.role == "HASTA") {
+            String key = FirebaseDocName().patientDocID;
+            await FirebaseDocName().getUserRef(key).doc().set(user);
+          } else {
+            String key = FirebaseDocName().nurseDocID;
+            await FirebaseDocName().getUserRef(key).doc().set(user);
+          }
+          log("success");
         },
         child: Container(
           decoration: BoxDecoration(
