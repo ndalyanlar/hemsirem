@@ -26,10 +26,10 @@ class LoginModelView extends ChangeNotifier {
 
 class Auth extends ChangeNotifier {
   Future registerUser(String mobile, BuildContext context,
-      {MyUser? user}) async {
+      {required MyUser user}) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
 
-    _auth.verifyPhoneNumber(
+    await _auth.verifyPhoneNumber(
         phoneNumber: mobile,
         timeout: Duration(seconds: 60),
         verificationCompleted: (AuthCredential authCredential) {},
@@ -68,8 +68,10 @@ class Auth extends ChangeNotifier {
                             auth
                                 .signInWithCredential(_credential)
                                 .then((UserCredential result) {
-                              Navigator.pushReplacementNamed(
-                                  context, PageNames.kHomeScreenName);
+                              Navigator.popAndPushNamed(
+                                  context, PageNames.kHomeScreenName,
+                                  arguments: user);
+                              // Navigator.of(context).pop();
                             }).catchError((e) {
                               print(e);
                             });

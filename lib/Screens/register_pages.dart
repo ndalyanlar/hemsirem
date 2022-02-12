@@ -114,6 +114,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
           if (loading) {
             MyUser user = MyUser(
+                role: who.role,
                 name: name.text,
                 surName: surname.text,
                 phone: tel.text,
@@ -129,7 +130,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               await FirebaseDocName().addUser(
                   type: "nurses", user: user, phoneNumber: _controllerTel.text);
             }
-            auth.registerUser("+9${user.phone}", context);
+            auth.registerUser("+9${user.phone}", context, user: user);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text('Lütfen bilgileri kontrol ediniz'),

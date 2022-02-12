@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
 import '../dates_list.dart';
 import '../theme/colors/light_colors.dart';
 import '../widgets/back_button.dart';
@@ -40,7 +42,7 @@ class CalendarPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Today',
+                      'Bugün',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.w700),
                     ),
@@ -61,13 +63,11 @@ class CalendarPage extends StatelessWidget {
                           );
                         },
                         child: Center(
-                          child: Text(
-                            'Add task',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16),
-                          ),
+                          child: Text('Randevu ara',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(color: LightColors.kLightWhite)),
                         ),
                       ),
                     ),
@@ -77,7 +77,7 @@ class CalendarPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Productive Day, Sourav',
+                    DateFormat('MM/dd/yy').format(DateTime.now()).toString(),
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,

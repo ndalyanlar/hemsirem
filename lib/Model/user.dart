@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 class MyUser {
+  String role;
   String name;
   String surName;
   String password;
   String phone;
   int age;
   MyUser(
-      {required this.name,
+      {required this.role,
+      required this.name,
       required this.surName,
       required this.phone,
       required this.password,
@@ -19,11 +21,14 @@ class MyUser {
       'surName': surName,
       'password': password,
       'phone': phone,
+      'age': age,
+      'role': role,
     };
   }
 
   factory MyUser.fromMap(Map<String, dynamic> map) {
     return MyUser(
+      role: map["role"] ?? '',
       age: map["age"] ?? 0,
       name: map['name'] ?? '',
       surName: map['surName'] ?? '',

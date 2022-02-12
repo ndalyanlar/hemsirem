@@ -13,12 +13,12 @@ import 'theme/colors/light_colors.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color
     statusBarColor: LightColors.kStatusBarCcolor, // status bar color
   ));
 
-  return runApp(ProviderScope(child: MyApp()));
+  return runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        PageNames.kHomeScreenName: (context) => HomePage(),
-        PageNames.kRegisterScreenName: (context) => RegisterPage(),
+        PageNames.kHomeScreenName: (context) => const HomePage(),
+        PageNames.kRegisterScreenName: (context) => const RegisterPage(),
       },
       title: 'Hemsirem',
       theme: ThemeData(
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             displayColor: LightColors.kDarkBlue,
             fontFamily: 'Poppins'),
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }

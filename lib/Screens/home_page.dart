@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hemsirem/Model/user.dart';
 
@@ -10,8 +9,10 @@ import '../Widgets/task_column.dart';
 import 'calendar_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   static CircleAvatar calendarIcon() {
-    return CircleAvatar(
+    return const CircleAvatar(
       radius: 25.0,
       backgroundColor: LightColors.kGreen,
       child: Icon(
@@ -34,10 +35,15 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Text subheading(String title) {
     return Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
           color: LightColors.kDarkBlue,
           fontSize: 20.0,
           fontWeight: FontWeight.w700,
@@ -87,28 +93,33 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: Column(
                       children: [
-                        Container(
-                          child: Text(
-                            "${user.name} ${user.surName}",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              color: LightColors.kDarkBlue,
-                              fontWeight: FontWeight.w800,
-                            ),
+                        Text(
+                          "${user.name} ${user.surName}",
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            fontSize: 22.0,
+                            color: LightColors.kDarkBlue,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
-                        Container(
-                          child: Text(
-                            "${user.age}",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black45,
-                              fontWeight: FontWeight.w400,
-                            ),
+                        Text(
+                          "${user.age}",
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
+                        Text(
+                          user.role,
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            fontSize: 22.0,
+                            color: LightColors.kDarkBlue,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -121,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Container(
                       color: Colors.transparent,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
                       child: Column(
                         children: <Widget>[
@@ -173,13 +184,13 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       color: Colors.transparent,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           subheading('Active Projects'),
-                          SizedBox(height: 5.0),
+                          const SizedBox(height: 5.0),
                           Row(
                             children: <Widget>[
                               ActiveProjectsCard(
@@ -188,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                                 title: 'Medical App',
                                 subtitle: '9 hours progress',
                               ),
-                              SizedBox(width: 20.0),
+                              const SizedBox(width: 20.0),
                               ActiveProjectsCard(
                                 cardColor: LightColors.kRed,
                                 loadingPercent: 0.6,
@@ -205,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                                 title: 'Sports App',
                                 subtitle: '5 hours progress',
                               ),
-                              SizedBox(width: 20.0),
+                              const SizedBox(width: 20.0),
                               ActiveProjectsCard(
                                 cardColor: LightColors.kBlue,
                                 loadingPercent: 0.9,

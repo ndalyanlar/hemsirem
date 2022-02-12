@@ -23,5 +23,5 @@ class AppTheme {
 
   static ButtonStyle loginPageButtonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.white70),
-      fixedSize: MaterialStateProperty.all(Size.fromWidth(200)));
+      fixedSize: MaterialStateProperty.all(const Size.fromWidth(200)));
 }
