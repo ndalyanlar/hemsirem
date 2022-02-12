@@ -53,8 +53,11 @@ class LoginPage extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter, colors: [Colors.red, Colors.red]),
+            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+              Colors.red.shade200,
+              Colors.red.shade300,
+              Colors.red.shade400
+            ]),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(60), topRight: Radius.circular(60))),
         child: Padding(
