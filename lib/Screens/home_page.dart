@@ -4,7 +4,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../Widgets/top_container.dart';
 import '../Theme/colors/light_colors.dart';
 import '../widgets/active_project_card.dart';
-import '../widgets/task_column.dart';
+import '../Widgets/task_column.dart';
 
 import 'calendar_page.dart';
 
@@ -116,7 +116,7 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              subheading('My Tasks'),
+                              subheading('Hizmetlerim'),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
@@ -129,28 +129,31 @@ class HomePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 15.0),
+                          SizedBox(height: height * 0.005),
                           TaskColumn(
                             icon: Icons.alarm,
                             iconBackgroundColor: LightColors.kRed,
-                            title: 'To Do',
-                            subtitle: '5 tasks now. 1 started',
+                            title: 'Yapılacak Sağlık Hizmetleri',
+                            subtitle: '5 görev',
+                            onPressed: () {},
                           ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
+                          SizedBox(height: height * 0.02),
                           TaskColumn(
                             icon: Icons.blur_circular,
                             iconBackgroundColor: LightColors.kDarkYellow,
-                            title: 'In Progress',
-                            subtitle: '1 tasks now. 1 started',
+                            title: 'Yapılmakta Olan Sağlık Hizmetleri',
+                            subtitle: '1 Görev',
+                            onPressed: () {},
                           ),
-                          SizedBox(height: 15.0),
-                          TaskColumn(
-                            icon: Icons.check_circle_outline,
-                            iconBackgroundColor: LightColors.kBlue,
-                            title: 'Done',
-                            subtitle: '18 tasks now. 13 started',
+                          SizedBox(height: height * 0.02),
+                          InkWell(
+                            child: TaskColumn(
+                              icon: Icons.check_circle_outline,
+                              iconBackgroundColor: LightColors.kBlue,
+                              title: 'Yapılmış Sağlık Hizmetleri',
+                              subtitle: '18 Görev',
+                              onPressed: () {},
+                            ),
                           ),
                         ],
                       ),

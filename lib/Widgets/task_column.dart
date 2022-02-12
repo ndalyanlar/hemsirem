@@ -5,12 +5,15 @@ class TaskColumn extends StatelessWidget {
   final Color iconBackgroundColor;
   final String title;
   final String subtitle;
+  final VoidCallback onPressed;
   TaskColumn({
+    Key? key,
     required this.icon,
     required this.iconBackgroundColor,
     required this.title,
     required this.subtitle,
-  });
+    required this.onPressed,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
