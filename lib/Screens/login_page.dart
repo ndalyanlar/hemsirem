@@ -296,10 +296,6 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                   _formKey.currentState!.save();
 
                   DocumentSnapshot data;
-                  // DocumentSnapshot data = await FirebaseFirestore.instance
-                  //     .collection("patients")
-                  //     .doc(_controllerPhone.text)
-                  //     .get();
                   switch (provider.whoIs) {
                     case Who.HASTA:
                       data = await FirebaseDocName().getUser(
@@ -315,24 +311,46 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                       break;
                   }
 
-                  User user = ((data.data() ??
-                      User(
+                  MyUser user = ((data.data() ??
+                      MyUser(
                           name: "",
                           surName: "",
                           phone: "",
                           password: "",
-                          age: 0)) as User);
+                          age: 0)) as MyUser);
 
                   if (user.password == _controllerPass.text &&
                       _controllerPhone.text.contains(user.phone)) {
-                    await auth.registerUser(provider.telephone, context);
+                    await auth.registerUser(
+                      user,
+                      provider.telephone,
+                      context,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      dismissDirection: DismissDirection.startToEnd,
+                      content: Center(
+                        child: Text(
+                          'Giriş Başarılı',
+                        ),
+                      ),
+                      backgroundColor: Color.fromARGB(255, 5, 94, 39),
+                    ));
                     log("success");
                   } else {
-                    // ScaffoldMessenger.of(context).showMaterialBanner(
-                    //     MaterialBanner(content: context, actions: []));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      // dismissDirection: DismissDirection.vertical,
+                      content: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: Text(
+                          'Giriş Hatalı',
+                          textAlign: TextAlign.center,
+                          style: AppTheme.LoginPageButtonsTextStyle.copyWith(
+                              color: LightColors.kLightWhite),
+                        ),
+                      ),
+                      backgroundColor: LightColors.kSnackbarBGColor,
+                    ));
                   }
-
-                  // auth.registerUser(provider.telephone, context);
                 }
               }),
         ],

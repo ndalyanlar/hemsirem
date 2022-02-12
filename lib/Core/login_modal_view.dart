@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hemsirem/Constant/page_names.dart';
+import 'package:hemsirem/Model/user.dart';
 
 class LoginModelView extends ChangeNotifier {
   late String telephone;
@@ -24,7 +25,7 @@ class LoginModelView extends ChangeNotifier {
 }
 
 class Auth extends ChangeNotifier {
-  Future registerUser(String mobile, BuildContext context) async {
+  Future registerUser(MyUser user, String mobile, BuildContext context) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
 
     _auth.verifyPhoneNumber(
@@ -101,7 +102,8 @@ class Auth extends ChangeNotifier {
                                 .signInWithCredential(_credential)
                                 .then((UserCredential result) {
                               Navigator.pushReplacementNamed(
-                                  context, PageNames.kHomeScreenName);
+                                  context, PageNames.kHomeScreenName,
+                                  arguments: [user]);
                             }).catchError((e) {
                               print(e);
                             });

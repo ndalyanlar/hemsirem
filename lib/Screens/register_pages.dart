@@ -37,6 +37,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   final TextEditingController _controllerPass2 = TextEditingController();
 
   @override
+  void initState() {
+    _controllerTel.text = "05";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
     return Scaffold(
@@ -68,7 +74,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                       buildtextField("Şifre tekrar girin", _controllerPass2,
                           pass: true),
                       loading
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(),
                             )
                           : buildSignInButton(
@@ -102,11 +108,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     return TextButton(
         onPressed: () async {
           setState(() {
-            loading = _formKey.currentState!.validate();
+            loading = (_formKey.currentState!.validate() &&
+                _controllerPass1.text == _controllerPass2.text);
           });
 
           if (loading) {
-            User user = User(
+            MyUser user = MyUser(
                 name: name.text,
                 surName: surname.text,
                 phone: tel.text,
@@ -184,6 +191,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           keyboardType: isNum ?? false ? TextInputType.number : null,
           controller: textEditingController,
           decoration: InputDecoration(
+              label: Text(type),
               hintText: type,
               hintStyle: const TextStyle(color: Colors.black26),
               border: InputBorder.none),
