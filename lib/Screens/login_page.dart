@@ -104,7 +104,7 @@ class LoginPage extends StatelessWidget {
           style: TextStyle(color: Colors.red.shade300, fontSize: 22),
         ),
         onPressed: () {
-          Navigator.pushReplacementNamed(context, PageNames.kRegisterScreenName,
+          Navigator.pushNamed(context, PageNames.kRegisterScreenName,
               arguments: ScreenArguments(provider.whoIs.name));
         });
   }
