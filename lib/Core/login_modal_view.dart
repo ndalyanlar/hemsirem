@@ -25,7 +25,8 @@ class LoginModelView extends ChangeNotifier {
 }
 
 class Auth extends ChangeNotifier {
-  Future registerUser(MyUser user, String mobile, BuildContext context) async {
+  Future registerUser(String mobile, BuildContext context,
+      {MyUser? user}) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
 
     _auth.verifyPhoneNumber(
