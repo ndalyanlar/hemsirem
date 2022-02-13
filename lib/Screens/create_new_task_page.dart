@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hemsirem/Constant/firestore_constant.dart';
 import 'package:hemsirem/Core/patient_model_view.dart';
 import 'package:hemsirem/Model/appointment.dart';
-
 import '../Model/disease.dart';
 import '../Model/user.dart';
 import '../Widgets/my_text_field.dart';
@@ -19,8 +17,6 @@ import 'home_page.dart';
 final patientsStatusProvider =
     ChangeNotifierProvider(((ref) => PatientModelView()));
 
-late MyUser user;
-
 class CreateNewTaskPage extends ConsumerWidget {
   const CreateNewTaskPage({Key? key}) : super(key: key);
 
@@ -29,7 +25,7 @@ class CreateNewTaskPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(patientsStatusProvider);
-    final arg = ModalRoute.of(context)!.settings.arguments as MyUser;
+    final patient = ModalRoute.of(context)!.settings.arguments as MyUser;
 
     double width = MediaQuery.of(context).size.width;
     var downwardIcon = const Icon(
@@ -61,6 +57,8 @@ class CreateNewTaskPage extends ConsumerWidget {
                           provider.nurseNames.add(element);
                         });
                         provider.nurseNames.toSet();
+
+                        provider.addNurseUser(provider.nurseNames.first);
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -78,7 +76,6 @@ class CreateNewTaskPage extends ConsumerWidget {
                                     provider.nurseNames.first.name,
                                 icon: const Icon(Icons.keyboard_arrow_down),
                                 items: provider.nurseNames.map((element) {
-                                  user = element;
                                   return DropdownMenuItem(
                                     value: element.name,
                                     child: Text(
@@ -87,9 +84,11 @@ class CreateNewTaskPage extends ConsumerWidget {
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   provider.setNurseName(newValue!);
-                                  provider.nurseNames.forEach((element) {
+                                  provider.nurseNames
+                                      .toList()
+                                      .forEach((element) {
                                     element.name == newValue
-                                        ? user = element
+                                        ? provider.addNurseUser(element)
                                         : null;
                                   });
                                 },
@@ -207,20 +206,20 @@ class CreateNewTaskPage extends ConsumerWidget {
                   Appointment appointment = Appointment(
                       title: provider.controllerTitle.text,
                       desc: provider.controllerDesc.text,
-                      user: user,
+                      user: provider.nurse,
                       date: provider.controllerDate.text,
                       startTime: provider.controllerStartTime.text,
                       endTime: provider.controllerendTime.text,
                       diseases: provider.disaseList,
-                      phone: arg.phone);
+                      phone: patient.phone);
                   provider.addProgress(appointment);
 
                   await FirebaseDocName().addTask(
-                      appointment: appointment, phoneNumber: arg.phone);
+                      appointment: appointment, phoneNumber: patient.phone);
                   print("success task");
                 },
                 child: Text(
-                  'Create Task',
+                  'İstek Gönder',
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,

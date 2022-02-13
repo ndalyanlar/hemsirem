@@ -25,6 +25,12 @@ class PatientModelView extends ChangeNotifier {
     notifyListeners();
   }
 
+  late MyUser nurse;
+
+  void addNurseUser(MyUser? value) {
+    nurse = value!;
+  }
+
   List<MyUser> nurseNames = [];
   String? nurseName;
 

@@ -55,23 +55,20 @@ class _HomePageState extends State<HomePage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: LightColors.kLightWhite,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
-        child: Column(
-          children: <Widget>[
-            buildTopContainer(height, width),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    buildMyTasks(context, height),
-                    buildActiveTasks(),
-                  ],
-                ),
+      body: Column(
+        children: <Widget>[
+          buildTopContainer(height, width),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  buildMyTasks(context, height),
+                  buildActiveTasks(),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -81,20 +78,23 @@ class _HomePageState extends State<HomePage> {
       height: height * 0.3,
       width: width,
       padding: null,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          SizedBox(
-            height: height * 0.01,
-          ),
-          Expanded(
-            child: Image.asset(
-              'assets/images/icontwo.png',
+      child: Padding(
+        padding: const EdgeInsets.only(top: 30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SizedBox(
+              height: height * 0.01,
             ),
-          ),
-          buildUserInfo(),
-        ],
+            Expanded(
+              child: Image.asset(
+                'assets/images/icontwo.png',
+              ),
+            ),
+            buildUserInfo(),
+          ],
+        ),
       ),
     );
   }
