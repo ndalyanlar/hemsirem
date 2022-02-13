@@ -341,6 +341,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                     Navigator.pushReplacementNamed(
                         context, PageNames.kHomeScreenName,
                         arguments: user);
+
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       dismissDirection: DismissDirection.startToEnd,
                       content: Center(
