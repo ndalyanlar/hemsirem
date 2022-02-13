@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hemsirem/Constant/page_names.dart';
+import 'package:hemsirem/Core/login_modal_view.dart';
 import 'package:hemsirem/Model/user.dart';
 
 import 'package:hemsirem/Theme/theme.dart';
@@ -37,11 +38,6 @@ class _HomePageState extends State<HomePage> {
   void didChangeDependencies() {
     user = ModalRoute.of(context)!.settings.arguments as MyUser;
     super.didChangeDependencies();
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   Text subheading(String title) {
@@ -172,13 +168,16 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               subheading('Hizmetlerim'),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, PageNames.kCalenderScreenName,
-                      arguments: user);
-                },
-                child: HomePage.calendarIcon(),
-              ),
+              user.role == Who.HASTA.name
+                  ? GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, PageNames.kCalenderScreenName,
+                            arguments: user);
+                      },
+                      child: HomePage.calendarIcon(),
+                    )
+                  : const SizedBox(),
             ],
           ),
           SizedBox(height: height * 0.005),
