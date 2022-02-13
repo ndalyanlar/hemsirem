@@ -55,7 +55,8 @@ class _HomePageState extends State<HomePage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: LightColors.kLightWhite,
-      body: SafeArea(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20.0),
         child: Column(
           children: <Widget>[
             buildTopContainer(height, width),

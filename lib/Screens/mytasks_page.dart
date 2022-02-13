@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hemsirem/Theme/colors/light_colors.dart';
 import 'package:hemsirem/Theme/theme.dart';
-import 'package:intl/intl.dart';
 
 import '../Widgets/expanded_card.dart';
 

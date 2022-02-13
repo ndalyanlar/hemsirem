@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../Theme/colors/light_colors.dart';
@@ -66,9 +67,19 @@ class ExpandedCardWidget extends StatelessWidget {
                       "${endTime.hour.toInt() - startTime.hour.toInt()} saatlik hizmet"),
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   alignment: Alignment.centerLeft,
-                )
+                ),
               ]),
-            )
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 15),
+              width: 300,
+              height: 200,
+              child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                target: LatLng(37.42796133580664, -122.085749655962),
+                zoom: 14.4746,
+              )),
+            ),
           ]),
     );
   }
