@@ -5,14 +5,16 @@ class CalendarDates extends StatelessWidget {
   final String date;
   final Color dayColor;
   final Color dateColor;
+  final int index;
 
-  const CalendarDates(
-      {Key? key,
-      required this.day,
-      required this.date,
-      required this.dayColor,
-      required this.dateColor})
-      : super(key: key);
+  const CalendarDates({
+    Key? key,
+    required this.index,
+    required this.day,
+    required this.date,
+    required this.dayColor,
+    required this.dateColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
