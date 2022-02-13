@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -75,13 +74,13 @@ class LoginPage extends StatelessWidget {
             child: Consumer(
               builder: (context, ref, child) {
                 final provider = ref.watch(loginStatusProvider);
-                final hastaRole = Who.HASTA;
-                final hemsireRole = Who.HEMSIRE;
+                const hastaRole = Who.HASTA;
+                const hemsireRole = Who.HEMSIRE;
 
                 return Column(
                   children: [
                     buildRow(provider, hastaRole, hemsireRole),
-                    BuildForm(),
+                    const BuildForm(),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     buildRegisterButton(provider, hastaRole, context),
                     SizedBox(
@@ -92,7 +91,7 @@ class LoginPage extends StatelessWidget {
                       width: 100,
                       height: 100,
                     ),
-                    Text("HEMŞİREM",
+                    const Text("HEMŞİREM",
                         style: TextStyle(color: Colors.white, fontSize: 24))
                   ],
                 );
@@ -197,6 +196,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     final provider = ref.watch(loginStatusProvider);
+    // ignore: unused_local_variable
     final auth = ref.watch(authProvider);
     return Form(
       key: _formKey,
@@ -206,12 +206,13 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             height: height * 0.01,
           ),
           Container(
-            padding: EdgeInsets.only(right: 15, left: 15, top: 0, bottom: 0),
+            padding:
+                const EdgeInsets.only(right: 15, left: 15, top: 0, bottom: 0),
             decoration: BoxDecoration(
                 color: LightColors.kLightWhite2,
                 borderRadius:
                     BorderRadius.circular(AppTheme.loginPageborderRadius),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       color: Colors.black12,
                       blurRadius: 20,
@@ -246,12 +247,12 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             height: height * 0.025,
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
             decoration: BoxDecoration(
                 color: LightColors.kLightWhite2,
                 borderRadius:
                     BorderRadius.circular(AppTheme.loginPageborderRadius),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       color: Colors.black12,
                       blurRadius: 20,
@@ -281,7 +282,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             height: height * 0.02,
           ),
           TextButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 splashFactory: NoSplash.splashFactory,
               ),
               onPressed: () {},

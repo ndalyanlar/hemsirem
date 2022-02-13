@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hemsirem/Theme/theme.dart';
 
 class TaskColumn extends StatelessWidget {
   final IconData icon;
   final Color iconBackgroundColor;
   final String title;
   final String subtitle;
-  final VoidCallback onPressed;
+
   TaskColumn({
     Key? key,
     required this.icon,
     required this.iconBackgroundColor,
     required this.title,
     required this.subtitle,
-    required this.onPressed,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -32,20 +32,12 @@ class TaskColumn extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Text(
-              subtitle,
-              style: TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black45),
-            ),
+            Text(title,
+                style: AppTheme.homePageTextStyle
+                    .copyWith(fontWeight: FontWeight.w600, fontSize: 14)),
+            Text(subtitle,
+                style: AppTheme.homePageTextStyle
+                    .copyWith(fontWeight: FontWeight.w400, fontSize: 14)),
           ],
         )
       ],

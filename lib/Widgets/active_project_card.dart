@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class ActiveProjectsCard extends StatelessWidget {
   final Color cardColor;
-  final double loadingPercent;
   final String title;
   final String subtitle;
 
   ActiveProjectsCard({
     required this.cardColor,
-    required this.loadingPercent,
     required this.title,
     required this.subtitle,
   });
@@ -29,23 +27,6 @@ class ActiveProjectsCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              // child: CircularPercentIndicator(
-              //   animation: true,
-              //   radius: 75.0,
-              //   percent: loadingPercent,
-              //   lineWidth: 5.0,
-              //   circularStrokeCap: CircularStrokeCap.round,
-              //   backgroundColor: Colors.white10,
-              //   progressColor: Colors.white,
-              //   center: Text(
-              //     '${(loadingPercent * 100).round()}%',
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.w700, color: Colors.white),
-              //   ),
-              // ),
-            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

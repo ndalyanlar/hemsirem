@@ -2,18 +2,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hemsirem/Screens/mytasks_page.dart';
 
 import 'Constant/page_names.dart';
 import 'Screens/home_page.dart';
 import 'Screens/login_page.dart';
 import 'Screens/register_pages.dart';
 import 'Theme/theme.dart';
-import 'theme/colors/light_colors.dart';
+import 'Theme/colors/light_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color
     statusBarColor: LightColors.kStatusBarCcolor, // status bar color
   ));
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         PageNames.kHomeScreenName: (context) => const HomePage(),
         PageNames.kRegisterScreenName: (context) => const RegisterPage(),
+        PageNames.kPlannedTasksScreenName: (context) => MyPlannedTasks()
       },
       title: 'Hemsirem',
       theme: ThemeData(
