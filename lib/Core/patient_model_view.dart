@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hemsirem/Constant/firestore_constant.dart';
-import 'package:hemsirem/Model/appointment.dart';
+import '../Constant/firestore_constant.dart';
+import '../Model/appointment.dart';
 
 import '../Model/disease.dart';
 import '../Model/user.dart';
 
 class PatientModelView extends ChangeNotifier {
-  late Appointment _appointment;
-
   List<Disease> disaseList = [
     Disease("Aşı"),
     Disease("Sağlık kontrol"),
@@ -21,7 +19,6 @@ class PatientModelView extends ChangeNotifier {
   final TextEditingController controllerDesc = TextEditingController();
 
   void addProgress(Appointment appointment) {
-    _appointment = appointment;
     notifyListeners();
   }
 

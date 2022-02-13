@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hemsirem/Model/appointment.dart';
+import '../Model/appointment.dart';
 
 import '../Model/user.dart';
 
 class FirebaseDocName {
-  String _patientDocId = "patients";
-  String _nurseDocId = "nurses";
+  final String _patientDocId = "patients";
+  final String _nurseDocId = "nurses";
 
   Future<void> addTask(
       {required Appointment appointment, required String phoneNumber}) async {
@@ -50,7 +50,7 @@ class FirebaseDocName {
         .get();
   }
 
-  CollectionReference _collectionRef =
+  final CollectionReference _collectionRef =
       FirebaseFirestore.instance.collection('nurses');
   Future<List<Object?>> getUser({required String type}) async {
     QuerySnapshot querySnapshot = await _collectionRef

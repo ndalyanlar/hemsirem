@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hemsirem/Constant/page_names.dart';
-import 'package:hemsirem/Core/login_modal_view.dart';
+import '../Constant/page_names.dart';
+import '../Core/login_modal_view.dart';
 
 import '../Constant/firestore_constant.dart';
 import '../Model/register_page_arg.dart';

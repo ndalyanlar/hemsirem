@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../theme/colors/light_colors.dart';
 
 class MyBackButton extends StatelessWidget {
+  const MyBackButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -11,7 +13,7 @@ class MyBackButton extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
         },
-        child: Align(
+        child: const Align(
           alignment: Alignment.centerLeft,
           child: Icon(
             Icons.arrow_back_ios,

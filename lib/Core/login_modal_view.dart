@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hemsirem/Constant/page_names.dart';
-import 'package:hemsirem/Model/user.dart';
+import '../Constant/page_names.dart';
+import '../Model/user.dart';
 
 class LoginModelView extends ChangeNotifier {
   late String telephone;
@@ -31,7 +32,7 @@ class Auth extends ChangeNotifier {
 
     await _auth.verifyPhoneNumber(
         phoneNumber: mobile,
-        timeout: Duration(seconds: 60),
+        timeout: const Duration(seconds: 60),
         verificationCompleted: (AuthCredential authCredential) {},
         verificationFailed: (e) {},
         codeSent: (String verificationId, [int? forceResendingToken]) {
@@ -41,7 +42,7 @@ class Auth extends ChangeNotifier {
               barrierDismissible: false,
               builder: (context) => Platform.isIOS
                   ? CupertinoAlertDialog(
-                      title: Text("Enter SMS Code"),
+                      title: const Text("Enter SMS Code"),
                       content: Material(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -54,7 +55,7 @@ class Auth extends ChangeNotifier {
                       ),
                       actions: <Widget>[
                         TextButton(
-                          child: Text("Done"),
+                          child: const Text("Done"),
                           // textColor: Colors.white,
                           // color: Colors.redAccent,
                           onPressed: () {
@@ -73,14 +74,16 @@ class Auth extends ChangeNotifier {
                                   arguments: user);
                               // Navigator.of(context).pop();
                             }).catchError((e) {
-                              print(e);
+                              if (kDebugMode) {
+                                print(e);
+                              }
                             });
                           },
                         )
                       ],
                     )
                   : AlertDialog(
-                      title: Text("Enter SMS Code"),
+                      title: const Text("Enter SMS Code"),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
@@ -91,7 +94,7 @@ class Auth extends ChangeNotifier {
                       ),
                       actions: <Widget>[
                         TextButton(
-                          child: Text("Done"),
+                          child: const Text("Done"),
                           // textColor: Colors.white,
                           // color: Colors.redAccent,
                           onPressed: () {
@@ -108,7 +111,9 @@ class Auth extends ChangeNotifier {
                                   context, PageNames.kHomeScreenName,
                                   arguments: user);
                             }).catchError((e) {
-                              print(e);
+                              if (kDebugMode) {
+                                print(e);
+                              }
                             });
                           },
                         )

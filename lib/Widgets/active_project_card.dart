@@ -6,20 +6,21 @@ class ActiveProjectsCard extends StatelessWidget {
   final String subtitle;
   final Icon icon;
 
-  ActiveProjectsCard({
+  const ActiveProjectsCard({
+    Key? key,
     required this.cardColor,
     required this.title,
     required this.subtitle,
     required this.icon,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10.0),
-        padding: EdgeInsets.all(15.0),
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.all(15.0),
         height: 200,
         decoration: BoxDecoration(
           color: cardColor,
@@ -37,7 +38,7 @@ class ActiveProjectsCard extends StatelessWidget {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14.0,
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -46,13 +47,13 @@ class ActiveProjectsCard extends StatelessWidget {
                   Text(
                     subtitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12.0,
                       color: Colors.white54,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   )
                 ],

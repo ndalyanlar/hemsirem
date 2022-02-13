@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:hemsirem/Model/user.dart';
+import 'user.dart';
 
 import 'disease.dart';
 

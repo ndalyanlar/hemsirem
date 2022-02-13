@@ -6,6 +6,7 @@ class AppTheme {
   static const TextStyle buttonRegisterTextStyle = TextStyle(
       fontFamily: "Poppins", fontSize: 18, color: LightColors.kLightWhite);
 
+  // ignore: non_constant_identifier_names
   static TextStyle LoginPageButtonsTextStyle = TextStyle(
       color: Colors.red.shade300, fontSize: 22, fontFamily: "Poppins");
 
@@ -26,10 +27,10 @@ class AppTheme {
           RoundedRectangleBorder(
               borderRadius:
                   BorderRadius.circular(AppTheme.loginPageborderRadius),
-              side: BorderSide(color: Colors.red))),
+              side: const BorderSide(color: Colors.red))),
       backgroundColor: MaterialStateProperty.all(Colors.white70),
       fixedSize: MaterialStateProperty.all(const Size.fromWidth(200)));
 
   static TextStyle homePageTextStyle =
-      TextStyle(color: LightColors.kDarkBlue, fontFamily: 'Poppins');
+      const TextStyle(color: LightColors.kDarkBlue, fontFamily: 'Poppins');
 }
