@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: LightColors.kLightWhite,
       body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: 30.0),
         child: Column(
           children: <Widget>[
             buildTopContainer(height, width),
