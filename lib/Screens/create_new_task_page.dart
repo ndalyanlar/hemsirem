@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../Model/disease.dart';
 import '../Widgets/my_text_field.dart';
 import '../Widgets/top_container.dart';
 import '../theme/colors/light_colors.dart';
@@ -7,9 +9,16 @@ import '../widgets/back_button.dart';
 
 import 'home_page.dart';
 
-class CreateNewTaskPage extends StatelessWidget {
+List<Disease> disaseList = [
+  Disease("Aşı"),
+  Disease("Sağlık kontrol"),
+  Disease("İğne"),
+  Disease("Serum"),
+];
+
+class CreateNewTaskPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     double width = MediaQuery.of(context).size.width;
     var downwardIcon = Icon(
       Icons.keyboard_arrow_down,
@@ -33,7 +42,7 @@ class CreateNewTaskPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Create new task',
+                        'Randevu Oluştur',
                         style: TextStyle(
                             fontSize: 30.0, fontWeight: FontWeight.w700),
                       ),
@@ -117,6 +126,7 @@ class CreateNewTaskPage extends StatelessWidget {
                           spacing: 10.0,
                           children: <Widget>[
                             Chip(
+                              onDeleted: () {},
                               label: Text("SPORT APP"),
                               backgroundColor: LightColors.kRed,
                               labelStyle: TextStyle(color: Colors.white),
