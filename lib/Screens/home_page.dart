@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hemsirem/Model/user.dart';
+import 'package:hemsirem/Widgets/active_project_card.dart';
+import 'package:hemsirem/Widgets/task_container.dart';
 
 import '../Widgets/top_container.dart';
 import '../Theme/colors/light_colors.dart';
-import '../widgets/active_project_card.dart';
+import '../Widgets/active_project_card.dart';
 import '../Widgets/task_column.dart';
 
 import 'calendar_page.dart';
@@ -71,22 +73,6 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: height * 0.05,
                   ),
-                  // CircularPercentIndicator(
-                  //   radius: 70.0,
-                  //   lineWidth: 5.0,
-                  //   animation: true,
-                  //   percent: 1,
-                  //   circularStrokeCap: CircularStrokeCap.round,
-                  //   progressColor: LightColors.kLightYellow,
-                  //   backgroundColor: LightColors.kLightRed2,
-                  //   center: CircleAvatar(
-                  //     backgroundColor: LightColors.kBlue,
-                  //     radius: 35.0,
-                  //     backgroundImage: AssetImage(
-                  //       'assets/images/avatar.png',
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: height * 0.02,
                   ),
