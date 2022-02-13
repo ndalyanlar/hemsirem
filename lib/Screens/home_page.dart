@@ -183,36 +183,30 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: height * 0.005),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName);
+              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName,
+                  arguments: "ToDo");
             },
             child: TaskColumn(
                 icon: Icons.alarm,
                 iconBackgroundColor: LightColors.kRed,
-                title: 'Yapılacak Sağlık Hizmetleri',
-                subtitle: '5 görev'),
+                title: user.role == "HEMŞİRE"
+                    ? 'Yapılacak Sağlık Hizmetleri'
+                    : 'Alacağım Sağlık Hizmetleri',
+                subtitle: '5 Hizmet'),
           ),
           SizedBox(height: height * 0.02),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName);
-            },
-            child: TaskColumn(
-              icon: Icons.blur_circular,
-              iconBackgroundColor: LightColors.kDarkYellow,
-              title: 'Yapılmakta Olan Sağlık Hizmetleri',
-              subtitle: '1 Görev',
-            ),
-          ),
-          SizedBox(height: height * 0.02),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName);
+              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName,
+                  arguments: "Done");
             },
             child: TaskColumn(
                 icon: Icons.check_circle_outline,
                 iconBackgroundColor: LightColors.kBlue,
-                title: 'Yapılmış Sağlık Hizmetleri',
-                subtitle: '18 Görev'),
+                title: user.role == "HEMŞİRE"
+                    ? 'Yapılmış Sağlık Hizmetleri'
+                    : 'Aldığım Sağlık Hizmetleri',
+                subtitle: '6 Hizmet'),
           ),
         ],
       ),

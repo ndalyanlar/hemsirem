@@ -13,17 +13,19 @@ class ExpandedCardWidget extends StatelessWidget {
   final DateTime endTime;
   final String patientName;
   final LatLng location;
+  final Icon icon;
 
-  const ExpandedCardWidget({
-    Key? key,
-    required this.title,
-    required this.desc,
-    required this.date,
-    required this.startTime,
-    required this.endTime,
-    required this.patientName,
-    required this.location,
-  }) : super(key: key);
+  const ExpandedCardWidget(
+      {Key? key,
+      required this.title,
+      required this.desc,
+      required this.date,
+      required this.startTime,
+      required this.endTime,
+      required this.patientName,
+      required this.location,
+      required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +42,7 @@ class ExpandedCardWidget extends StatelessWidget {
               style: AppTheme.homePageTextStyle.copyWith(fontSize: 14),
             ),
           ),
-          leading: Container(
-              padding: EdgeInsets.only(top: 8), child: Icon(Icons.timelapse)),
+          leading: Container(padding: EdgeInsets.only(top: 8), child: icon),
           title: Container(
             alignment: Alignment.center,
             child: Text(

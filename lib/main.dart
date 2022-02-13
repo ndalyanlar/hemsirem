@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         PageNames.kHomeScreenName: (context) => const HomePage(),
         PageNames.kRegisterScreenName: (context) => const RegisterPage(),
-        PageNames.kPlannedTasksScreenName: (context) => const MyPlannedTasks(),
+        PageNames.kPlannedTasksScreenName: (context) => MyPlannedTasks(),
         PageNames.kCreateTaskScreenName: (context) => const CreateNewTaskPage(),
         PageNames.kCalenderScreenName: (context) => CalendarPage(),
       },
