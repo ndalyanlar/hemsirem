@@ -4,11 +4,13 @@ class ActiveProjectsCard extends StatelessWidget {
   final Color cardColor;
   final String title;
   final String subtitle;
+  final Icon icon;
 
   ActiveProjectsCard({
     required this.cardColor,
     required this.title,
     required this.subtitle,
+    required this.icon,
   });
 
   @override
@@ -25,28 +27,36 @@ class ActiveProjectsCard extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
+            icon,
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                ),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.white54,
-                    fontWeight: FontWeight.w400,
+                  Text(
+                    subtitle,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white54,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  )
+                ],
+              ),
             ),
           ],
         ),

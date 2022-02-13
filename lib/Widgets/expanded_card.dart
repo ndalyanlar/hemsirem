@@ -12,6 +12,7 @@ class ExpandedCardWidget extends StatelessWidget {
   final DateTime startTime;
   final DateTime endTime;
   final String patientName;
+  final LatLng location;
 
   const ExpandedCardWidget({
     Key? key,
@@ -21,6 +22,7 @@ class ExpandedCardWidget extends StatelessWidget {
     required this.startTime,
     required this.endTime,
     required this.patientName,
+    required this.location,
   }) : super(key: key);
 
   @override
@@ -39,8 +41,7 @@ class ExpandedCardWidget extends StatelessWidget {
             ),
           ),
           leading: Container(
-              padding: EdgeInsets.only(top: 8),
-              child: Icon(Icons.task_alt_outlined)),
+              padding: EdgeInsets.only(top: 8), child: Icon(Icons.timelapse)),
           title: Container(
             alignment: Alignment.center,
             child: Text(
@@ -58,14 +59,15 @@ class ExpandedCardWidget extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
               child: Row(children: [
-                Container(
-                  child: Text(formattedDate),
-                  alignment: Alignment.centerLeft,
+                Expanded(
+                  child: Container(
+                    child: Text(formattedDate),
+                    alignment: Alignment.centerLeft,
+                  ),
                 ),
                 Container(
                   child: Text(
-                      "${endTime.hour.toInt() - startTime.hour.toInt()} saatlik hizmet"),
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                      "${endTime.minute.toInt() - startTime.minute.toInt()} Dakikalik Hizmet"),
                   alignment: Alignment.centerLeft,
                 ),
               ]),
@@ -76,9 +78,7 @@ class ExpandedCardWidget extends StatelessWidget {
               height: 200,
               child: GoogleMap(
                   markers: {
-                    Marker(
-                        markerId: MarkerId("Location"),
-                        position: LatLng(41.02234864293248, 28.973015697286947))
+                    Marker(markerId: MarkerId("Location"), position: location)
                   },
                   initialCameraPosition: CameraPosition(
                     target: LatLng(41.0225311, 28.9719733),

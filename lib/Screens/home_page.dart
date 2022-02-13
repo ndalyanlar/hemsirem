@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hemsirem/Constant/page_names.dart';
 import 'package:hemsirem/Model/user.dart';
 
@@ -111,31 +112,48 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: <Widget>[
               ActiveProjectsCard(
-                cardColor: LightColors.kGreen,
-                title: 'Medical App',
-                subtitle: '9 hours progress',
-              ),
+                  cardColor: LightColors.kGreen,
+                  title: 'Sağlık Kontrol',
+                  subtitle: '9 Hizmet Bekliyor...',
+                  icon: Icon(
+                    Icons.medical_services_outlined,
+                    color: LightColors.kLightWhite,
+                    size: 100,
+                  )),
               const SizedBox(width: 20.0),
               ActiveProjectsCard(
                 cardColor: LightColors.kRed,
-                title: 'Making History Notes',
-                subtitle: '20 hours progress',
-              ),
+                title: 'İğne',
+                subtitle: '20 Hizmet Bekliyor...',
+                icon: Icon(
+                  FontAwesomeIcons.syringe,
+                  color: LightColors.kLightWhite,
+                  size: 100,
+                ),
+              )
             ],
           ),
           Row(
             children: <Widget>[
               ActiveProjectsCard(
-                cardColor: LightColors.kDarkYellow,
-                title: 'Sports App',
-                subtitle: '5 hours progress',
-              ),
+                  cardColor: LightColors.kDarkYellow,
+                  title: 'Aşı',
+                  subtitle: '5 Hizmet Bekliyor...',
+                  icon: Icon(
+                    FontAwesomeIcons.clinicMedical,
+                    color: LightColors.kLightWhite,
+                    size: 100,
+                  )),
               const SizedBox(width: 20.0),
               ActiveProjectsCard(
-                cardColor: LightColors.kBlue,
-                title: 'Online Flutter Course',
-                subtitle: '23 hours progress',
-              ),
+                  cardColor: LightColors.kBlue,
+                  title: 'Serum',
+                  subtitle: '23 Hizmet Bekliyor...',
+                  icon: Icon(
+                    FontAwesomeIcons.pills,
+                    color: LightColors.kLightWhite,
+                    size: 100,
+                  )),
             ],
           ),
         ],
