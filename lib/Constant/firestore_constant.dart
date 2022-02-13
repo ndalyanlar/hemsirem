@@ -1,12 +1,26 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hemsirem/Model/appointment.dart';
 
 import '../Model/user.dart';
 
 class FirebaseDocName {
   String _patientDocId = "patients";
   String _nurseDocId = "nurses";
+
+  Future<void> addTask(
+      {required Appointment appointment, required String phoneNumber}) async {
+    await FirebaseFirestore.instance
+        .collection("tasks")
+        .withConverter<Appointment>(
+          fromFirestore: (snapshots, _) =>
+              Appointment.fromJson(jsonEncode(snapshots.data())),
+          toFirestore: (appointment, _) => jsonDecode(appointment.toJson()),
+        )
+        .doc(phoneNumber)
+        .set(appointment);
+  }
 
   Future<void> addUser(
       {required String type,

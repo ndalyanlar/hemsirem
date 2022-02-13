@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hemsirem/Constant/page_names.dart';
 
 import 'package:intl/intl.dart';
 
+import '../Model/user.dart';
 import '../dates_list.dart';
 import '../theme/colors/light_colors.dart';
 import '../widgets/back_button.dart';
@@ -24,6 +26,7 @@ class CalendarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arg = ModalRoute.of(context)!.settings.arguments as MyUser;
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
       body: SafeArea(
@@ -55,12 +58,15 @@ class CalendarPage extends StatelessWidget {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreateNewTaskPage(),
-                            ),
-                          );
+                          Navigator.pushNamed(
+                              context, PageNames.kCreateTaskScreenName,
+                              arguments: arg);
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => CreateNewTaskPage(),
+                          //   ),
+                          // );
                         },
                         child: Center(
                           child: Text('Randevu ara',

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,28 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hemsirem/Constant/firestore_constant.dart';
 import 'package:hemsirem/Core/patient_model_view.dart';
+import 'package:hemsirem/Model/appointment.dart';
 
 import '../Model/disease.dart';
 import '../Model/user.dart';
 import '../Widgets/my_text_field.dart';
 import '../Widgets/top_container.dart';
 import '../theme/colors/light_colors.dart';
-import '../widgets/back_button.dart';
 
 import 'home_page.dart';
 
 final patientsStatusProvider =
     ChangeNotifierProvider(((ref) => PatientModelView()));
 
+late MyUser user;
+
 class CreateNewTaskPage extends ConsumerWidget {
   const CreateNewTaskPage({Key? key}) : super(key: key);
+
+  // final ChangeNotifierProvider<PatientModelView> patientsUserProvider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(patientsStatusProvider);
+    final arg = ModalRoute.of(context)!.settings.arguments as MyUser;
 
     double width = MediaQuery.of(context).size.width;
-    var downwardIcon = Icon(
+    var downwardIcon = const Icon(
       Icons.keyboard_arrow_down,
       color: Colors.black54,
     );
@@ -40,7 +46,7 @@ class CreateNewTaskPage extends ConsumerWidget {
             height: null,
             child: Column(
               children: <Widget>[
-                Text(
+                const Text(
                   'Randevu Oluştur',
                   style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w700),
                 ),
@@ -72,6 +78,7 @@ class CreateNewTaskPage extends ConsumerWidget {
                                     provider.nurseNames.first.name,
                                 icon: const Icon(Icons.keyboard_arrow_down),
                                 items: provider.nurseNames.map((element) {
+                                  user = element;
                                   return DropdownMenuItem(
                                     value: element.name,
                                     child: Text(
@@ -80,6 +87,11 @@ class CreateNewTaskPage extends ConsumerWidget {
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   provider.setNurseName(newValue!);
+                                  provider.nurseNames.forEach((element) {
+                                    element.name == newValue
+                                        ? user = element
+                                        : null;
+                                  });
                                 },
                               ),
                             ),
@@ -95,7 +107,8 @@ class CreateNewTaskPage extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     MyTextField(
-                      label: 'Title',
+                      controller: provider.controllerTitle,
+                      label: 'Başklık',
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -103,7 +116,8 @@ class CreateNewTaskPage extends ConsumerWidget {
                       children: <Widget>[
                         Expanded(
                           child: MyTextField(
-                            label: 'Date',
+                            controller: provider.controllerDate,
+                            label: 'Tarih',
                             icon: downwardIcon,
                           ),
                         ),
@@ -125,13 +139,15 @@ class CreateNewTaskPage extends ConsumerWidget {
                   children: <Widget>[
                     Expanded(
                         child: MyTextField(
-                      label: 'Start Time',
+                      controller: provider.controllerStartTime,
+                      label: 'Başlangıç',
                       icon: downwardIcon,
                     )),
                     SizedBox(width: 40),
                     Expanded(
                       child: MyTextField(
-                        label: 'End Time',
+                        controller: provider.controllerendTime,
+                        label: 'Bitiş',
                         icon: downwardIcon,
                       ),
                     ),
@@ -139,6 +155,7 @@ class CreateNewTaskPage extends ConsumerWidget {
                 ),
                 SizedBox(height: 20),
                 MyTextField(
+                  controller: provider.controllerDesc,
                   label: 'Description',
                   minLines: 3,
                   maxLines: 3,
@@ -181,29 +198,42 @@ class CreateNewTaskPage extends ConsumerWidget {
               ],
             ),
           )),
-          Container(
+          SizedBox(
             height: 80,
             width: width,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  child: Text(
-                    'Create Task',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18),
-                  ),
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                  width: width - 40,
-                  decoration: BoxDecoration(
-                    color: LightColors.kBlue,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
+            child: Container(
+              child: TextButton(
+                onPressed: () async {
+                  Appointment appointment = Appointment(
+                      title: provider.controllerTitle.text,
+                      desc: provider.controllerDesc.text,
+                      user: user,
+                      date: provider.controllerDate.text,
+                      startTime: provider.controllerStartTime.text,
+                      endTime: provider.controllerendTime.text,
+                      diseases: provider.disaseList,
+                      phone: arg.phone);
+                  provider.addProgress(appointment);
+
+                  await FirebaseDocName().addTask(
+                      appointment: appointment, phoneNumber: arg.phone);
+                  print("success task");
+                },
+                child: Text(
+                  'Create Task',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18),
                 ),
-              ],
+              ),
+              alignment: Alignment.center,
+              margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+              width: width - 40,
+              decoration: BoxDecoration(
+                color: LightColors.kBlue,
+                borderRadius: BorderRadius.circular(30),
+              ),
             ),
           ),
         ],

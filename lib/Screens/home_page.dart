@@ -156,10 +156,8 @@ class _HomePageState extends State<HomePage> {
               subheading('Hizmetlerim'),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CalendarPage()),
-                  );
+                  Navigator.pushNamed(context, PageNames.kCalenderScreenName,
+                      arguments: user);
                 },
                 child: HomePage.calendarIcon(),
               ),

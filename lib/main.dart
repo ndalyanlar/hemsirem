@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hemsirem/Screens/calendar_page.dart';
+import 'package:hemsirem/Screens/create_new_task_page.dart';
 import 'package:hemsirem/Screens/mytasks_page.dart';
 
 import 'Constant/page_names.dart';
@@ -31,7 +33,9 @@ class MyApp extends StatelessWidget {
       routes: {
         PageNames.kHomeScreenName: (context) => const HomePage(),
         PageNames.kRegisterScreenName: (context) => const RegisterPage(),
-        PageNames.kPlannedTasksScreenName: (context) => MyPlannedTasks()
+        PageNames.kPlannedTasksScreenName: (context) => MyPlannedTasks(),
+        PageNames.kCreateTaskScreenName: (context) => const CreateNewTaskPage(),
+        PageNames.kCalenderScreenName: (context) => CalendarPage(),
       },
       title: 'Hemsirem',
       theme: ThemeData(

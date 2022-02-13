@@ -14,8 +14,11 @@ class PatientModelView extends ChangeNotifier {
     Disease("İğne"),
     Disease("Serum"),
   ];
-
-  final TextEditingController _controllertitle = TextEditingController();
+  final TextEditingController controllerTitle = TextEditingController();
+  final TextEditingController controllerDate = TextEditingController();
+  final TextEditingController controllerStartTime = TextEditingController();
+  final TextEditingController controllerendTime = TextEditingController();
+  final TextEditingController controllerDesc = TextEditingController();
 
   void addProgress(Appointment appointment) {
     _appointment = appointment;

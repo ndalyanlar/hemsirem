@@ -7,9 +7,9 @@ import 'disease.dart';
 class Appointment {
   String title;
   String desc;
-  DateTime date;
-  DateTime startTime;
-  DateTime endTime;
+  String date;
+  String startTime;
+  String endTime;
   MyUser user;
   String phone;
   List<Disease> diseases;
@@ -28,9 +28,9 @@ class Appointment {
     return {
       'title': title,
       'desc': desc,
-      'date': date.millisecondsSinceEpoch,
-      'startTime': startTime.millisecondsSinceEpoch,
-      'endTime': endTime.millisecondsSinceEpoch,
+      'date': date,
+      'startTime': startTime,
+      'endTime': endTime,
       'user': user.toMap(),
       'diseases': diseases.map((x) => x.toMap()).toList(),
       'phone': phone
@@ -41,9 +41,9 @@ class Appointment {
     return Appointment(
         title: map['title'] ?? '',
         desc: map['desc'] ?? '',
-        date: DateTime.fromMillisecondsSinceEpoch(map['date']),
-        startTime: DateTime.fromMillisecondsSinceEpoch(map['startTime']),
-        endTime: DateTime.fromMillisecondsSinceEpoch(map['endTime']),
+        date: map['date'],
+        startTime: map['startTime'],
+        endTime: map['endTime'],
         user: MyUser.fromMap(map['user']),
         diseases:
             List<Disease>.from(map['diseases']?.map((x) => Disease.fromMap(x))),

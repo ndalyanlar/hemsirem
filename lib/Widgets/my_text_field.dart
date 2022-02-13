@@ -5,23 +5,29 @@ class MyTextField extends StatelessWidget {
   final int maxLines;
   final int minLines;
   Icon? icon;
+  TextEditingController controller;
   MyTextField(
-      {required this.label, this.maxLines = 1, this.minLines = 1, this.icon});
+      {required this.label,
+      this.maxLines = 1,
+      this.minLines = 1,
+      this.icon,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(color: Colors.black87),
+      controller: controller,
+      style: const TextStyle(color: Colors.black87),
       minLines: minLines,
       maxLines: maxLines,
       decoration: InputDecoration(
-          suffixIcon: icon ?? null,
+          suffixIcon: icon,
           labelText: label,
           labelStyle: const TextStyle(color: Colors.black45),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-          border:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black)),
+          border: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey))),
     );
   }
 }
