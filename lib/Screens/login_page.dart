@@ -308,13 +308,13 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                   DocumentSnapshot data;
                   switch (provider.whoIs) {
                     case Who.HASTA:
-                      data = await FirebaseDocName().getUser(
+                      data = await FirebaseDocName().getUserWithFilter(
                           type: Who.HASTA.firebaseCollectionName,
                           phoneNumber:
                               provider.telephone.replaceAll("+9", "").trim());
                       break;
                     case Who.HEMSIRE:
-                      data = await FirebaseDocName().getUser(
+                      data = await FirebaseDocName().getUserWithFilter(
                           type: Who.HEMSIRE.firebaseCollectionName,
                           phoneNumber:
                               provider.telephone.replaceAll("+9", "").trim());

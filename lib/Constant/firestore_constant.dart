@@ -23,7 +23,7 @@ class FirebaseDocName {
         .set(user);
   }
 
-  Future<DocumentSnapshot> getUser(
+  Future<DocumentSnapshot> getUserWithFilter(
       {required String type, required String phoneNumber}) async {
     return await FirebaseFirestore.instance
         .collection(type)
@@ -34,6 +34,23 @@ class FirebaseDocName {
         )
         .doc(phoneNumber)
         .get();
+  }
+
+  CollectionReference _collectionRef =
+      FirebaseFirestore.instance.collection('nurses');
+  Future<List<Object?>> getUser({required String type}) async {
+    QuerySnapshot querySnapshot = await _collectionRef
+        .withConverter<MyUser>(
+          fromFirestore: (snapshots, _) =>
+              MyUser.fromJson(jsonEncode(snapshots.data())),
+          toFirestore: (user, _) => jsonDecode(user.toJson()),
+        )
+        .get();
+
+    final allData =
+        querySnapshot.docs.map((doc) => doc.data() as MyUser).toList();
+
+    return allData;
   }
 
   String get patientDocID => _patientDocId;
