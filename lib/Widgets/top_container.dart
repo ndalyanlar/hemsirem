@@ -16,11 +16,12 @@ class TopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          padding != null ? padding : EdgeInsets.symmetric(horizontal: 20.0),
+      padding: padding != null
+          ? padding
+          : const EdgeInsets.symmetric(horizontal: 20.0),
       decoration: BoxDecoration(
           color: LightColors.kLightRed3,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(40.0),
             bottomLeft: Radius.circular(40.0),
           )),

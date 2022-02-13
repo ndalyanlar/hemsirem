@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hemsirem/Constant/page_names.dart';
-import 'package:hemsirem/Core/calender_page_model_view.dart';
-import 'package:hemsirem/Theme/colors/light_colors.dart';
+import '../Constant/page_names.dart';
+import '../Core/calender_page_model_view.dart';
+import '../Theme/colors/light_colors.dart';
 
 import 'package:intl/intl.dart';
 
@@ -16,11 +16,14 @@ import 'create_new_task_page.dart';
 
 final pageProvider = ChangeNotifierProvider(((ref) => CalenderPageModel()));
 
+// ignore: must_be_immutable
 class CalendarPage extends ConsumerWidget {
+  CalendarPage({Key? key}) : super(key: key);
+
   Widget _dashedText() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15),
-      child: Text(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: const Text(
         '------------------------------------------',
         maxLines: 1,
         style:
@@ -57,7 +60,7 @@ class CalendarPage extends ConsumerWidget {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Bugün',
                     style:
                         TextStyle(fontSize: 30.0, fontWeight: FontWeight.w700),
@@ -85,28 +88,28 @@ class CalendarPage extends ConsumerWidget {
                     ),
                   ),
                 ]),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 DateFormat('dd').format(DateTime.now()).toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 35.0,
                   color: LightColors.kDarkBlue,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            Align(
+            const SizedBox(height: 30),
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Şubat, 2022',
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
               ),
             ),
-            SizedBox(height: 20.0),
-            Container(
+            const SizedBox(height: 20.0),
+            SizedBox(
               height: 58.0,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -152,14 +155,14 @@ class CalendarPage extends ConsumerWidget {
                 child: ListView.builder(
                   itemCount: time.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${time[index]}:00',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black54,
                         ),
@@ -168,14 +171,14 @@ class CalendarPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
                 flex: 5,
                 child: ListView(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     _dashedText(),
                     TaskContainer(
@@ -213,7 +216,7 @@ class CalendarPage extends ConsumerWidget {
     return Expanded(
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -223,14 +226,14 @@ class CalendarPage extends ConsumerWidget {
                 child: ListView.builder(
                   itemCount: time.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${time[index]}:00',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black54,
                         ),
@@ -239,14 +242,14 @@ class CalendarPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
                 flex: 5,
                 child: ListView(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     TaskContainer(
                       title: 'Covid-19 Aşısı',
@@ -284,7 +287,7 @@ class CalendarPage extends ConsumerWidget {
     return Expanded(
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -294,14 +297,14 @@ class CalendarPage extends ConsumerWidget {
                 child: ListView.builder(
                   itemCount: time.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${time[index]}:00',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black54,
                         ),
@@ -310,14 +313,14 @@ class CalendarPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
                 flex: 5,
                 child: ListView(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     TaskContainer(
                       title: 'Sağlık Kontrolü',

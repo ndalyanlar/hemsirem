@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MyTextField extends StatelessWidget {
   final String label;
   final int maxLines;
@@ -7,11 +8,13 @@ class MyTextField extends StatelessWidget {
   Icon? icon;
   TextEditingController controller;
   MyTextField(
-      {required this.label,
+      {Key? key,
+      required this.label,
       this.maxLines = 1,
       this.minLines = 1,
       this.icon,
-      required this.controller});
+      required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

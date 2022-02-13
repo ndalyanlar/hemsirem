@@ -41,7 +41,8 @@ class ExpandedCardWidget extends StatelessWidget {
             ),
           ),
           leading: Container(
-              padding: EdgeInsets.only(top: 8), child: Icon(Icons.timelapse)),
+              padding: const EdgeInsets.only(top: 8),
+              child: const Icon(Icons.timelapse)),
           title: Container(
             alignment: Alignment.center,
             child: Text(
@@ -53,7 +54,7 @@ class ExpandedCardWidget extends StatelessWidget {
             Container(
               child: Text(desc),
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
             ),
             Padding(
               padding:
@@ -73,14 +74,16 @@ class ExpandedCardWidget extends StatelessWidget {
               ]),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 15),
+              margin: const EdgeInsets.only(bottom: 15),
               width: 300,
               height: 200,
               child: GoogleMap(
                   markers: {
-                    Marker(markerId: MarkerId("Location"), position: location)
+                    Marker(
+                        markerId: const MarkerId("Location"),
+                        position: location)
                   },
-                  initialCameraPosition: CameraPosition(
+                  initialCameraPosition: const CameraPosition(
                     target: LatLng(41.0225311, 28.9719733),
                     zoom: 14.4746,
                   )),

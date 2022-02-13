@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hemsirem/Screens/calendar_page.dart';
-import 'package:hemsirem/Screens/create_new_task_page.dart';
-import 'package:hemsirem/Screens/mytasks_page.dart';
+import 'Screens/calendar_page.dart';
+import 'Screens/create_new_task_page.dart';
+import 'Screens/mytasks_page.dart';
 
 import 'Constant/page_names.dart';
 import 'Screens/home_page.dart';

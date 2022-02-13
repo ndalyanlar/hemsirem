@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hemsirem/Constant/firestore_constant.dart';
-import 'package:hemsirem/Core/patient_model_view.dart';
-import 'package:hemsirem/Model/appointment.dart';
+import '../Constant/firestore_constant.dart';
+import '../Core/patient_model_view.dart';
+import '../Model/appointment.dart';
 import '../Model/disease.dart';
 import '../Model/user.dart';
 import '../Widgets/my_text_field.dart';
@@ -130,7 +130,7 @@ class CreateNewTaskPage extends ConsumerWidget {
           ),
           Expanded(
               child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: <Widget>[
                 Row(
@@ -142,7 +142,7 @@ class CreateNewTaskPage extends ConsumerWidget {
                       label: 'Başlangıç',
                       icon: downwardIcon,
                     )),
-                    SizedBox(width: 40),
+                    const SizedBox(width: 40),
                     Expanded(
                       child: MyTextField(
                         controller: provider.controllerendTime,
@@ -152,7 +152,7 @@ class CreateNewTaskPage extends ConsumerWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 MyTextField(
                   controller: provider.controllerDesc,
                   label: 'Description',
@@ -160,13 +160,13 @@ class CreateNewTaskPage extends ConsumerWidget {
                   maxLines: 3,
                   icon: null,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   alignment: Alignment.topLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Category',
                         style: TextStyle(
                           fontSize: 18,
@@ -187,7 +187,7 @@ class CreateNewTaskPage extends ConsumerWidget {
                               onDeleted: () {},
                               label: Text(i.name),
                               backgroundColor: LightColors.kRed,
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelStyle: const TextStyle(color: Colors.white),
                             ),
                         ],
                       ),
@@ -218,16 +218,16 @@ class CreateNewTaskPage extends ConsumerWidget {
                       appointment: appointment, phoneNumber: patient.phone);
                   print("success task");
                 },
-                child: Text(
+                child: const Text(
                   'İstek Gönder',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                       fontSize: 18),
                 ),
               ),
               alignment: Alignment.center,
-              margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               width: width - 40,
               decoration: BoxDecoration(
                 color: LightColors.kBlue,

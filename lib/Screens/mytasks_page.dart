@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hemsirem/Theme/colors/light_colors.dart';
-import 'package:hemsirem/Theme/theme.dart';
+import '../Theme/colors/light_colors.dart';
+import '../Theme/theme.dart';
 
 import '../Widgets/expanded_card.dart';
 
@@ -19,7 +19,7 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Yapacağım Hizmetler"),
+          title: const Text("Yapacağım Hizmetler"),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -32,19 +32,19 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
                   date: DateTime.parse("20220202 1430"),
                   startTime: DateTime.parse("20220202 1430"),
                   endTime: DateTime.parse("20220202 1430")
-                      .add(Duration(minutes: 15)),
+                      .add(const Duration(minutes: 15)),
                   patientName: "Melih Taskin",
-                  location: LatLng(41.02234864293248, 28.973015697286947),
+                  location: const LatLng(41.02234864293248, 28.973015697286947),
                 ),
                 ExpandedCardWidget(
                   title: "COVİD-19 Aşısı",
                   desc: "Covid-19 Aşısı Vurulacaktır",
                   date: DateTime.parse("20220211 1730"),
                   startTime: DateTime.parse("20220211 1730"),
-                  endTime:
-                      DateTime.parse("20220211 1730").add(Duration(minutes: 5)),
+                  endTime: DateTime.parse("20220211 1730")
+                      .add(const Duration(minutes: 5)),
                   patientName: "Melih Taskin",
-                  location: LatLng(41.02234874293148, 28.976015397287947),
+                  location: const LatLng(41.02234874293148, 28.976015397287947),
                 )
               ],
             ),

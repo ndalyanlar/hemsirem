@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hemsirem/Theme/theme.dart';
+import '../Theme/theme.dart';
 
 class TaskColumn extends StatelessWidget {
   final IconData icon;
@@ -7,7 +7,7 @@ class TaskColumn extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  TaskColumn({
+  const TaskColumn({
     Key? key,
     required this.icon,
     required this.iconBackgroundColor,
@@ -28,7 +28,7 @@ class TaskColumn extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        SizedBox(width: 10.0),
+        const SizedBox(width: 10.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

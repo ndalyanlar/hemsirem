@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hemsirem/Constant/page_names.dart';
-import 'package:hemsirem/Core/login_modal_view.dart';
-import 'package:hemsirem/Model/user.dart';
+import '../Constant/page_names.dart';
+import '../Core/login_modal_view.dart';
+import '../Model/user.dart';
 
-import 'package:hemsirem/Theme/theme.dart';
+import '../Theme/theme.dart';
 
 import '../Widgets/top_container.dart';
 import '../Theme/colors/light_colors.dart';
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                   cardColor: LightColors.kGreen,
                   title: 'Sağlık Kontrol',
                   subtitle: '9 Hizmet Bekliyor...',
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.medical_services_outlined,
                     color: LightColors.kLightWhite,
                     size: 100,
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                 cardColor: LightColors.kRed,
                 title: 'İğne',
                 subtitle: '20 Hizmet Bekliyor...',
-                icon: Icon(
+                icon: const Icon(
                   FontAwesomeIcons.syringe,
                   color: LightColors.kLightWhite,
                   size: 100,
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                   cardColor: LightColors.kDarkYellow,
                   title: 'Aşı',
                   subtitle: '5 Hizmet Bekliyor...',
-                  icon: Icon(
+                  icon: const Icon(
                     FontAwesomeIcons.clinicMedical,
                     color: LightColors.kLightWhite,
                     size: 100,
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                   cardColor: LightColors.kBlue,
                   title: 'Serum',
                   subtitle: '23 Hizmet Bekliyor...',
-                  icon: Icon(
+                  icon: const Icon(
                     FontAwesomeIcons.pills,
                     color: LightColors.kLightWhite,
                     size: 100,
