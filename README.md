@@ -1,16 +1,10 @@
 # hemsirem_
 
-A new Flutter project.
+Hemşirem uygulaması
 
-## Getting Started
+## Başlarken
 
-This project is a starting point for a Flutter application.
+Bu proje başta yaşlılar olmak üzere sağlık hizmetinin evden gerçekleştirmesini amaçlayan bir projedir.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Tanım
+Evde bakım hizmetini almayan kalmasın ulaşılabilir sağlık hizmeti için.
