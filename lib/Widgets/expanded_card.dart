@@ -10,6 +10,7 @@ class ExpandedCardWidget extends StatelessWidget {
   final DateTime date;
   final DateTime startTime;
   final DateTime endTime;
+  final String patientName;
 
   const ExpandedCardWidget({
     Key? key,
@@ -18,6 +19,7 @@ class ExpandedCardWidget extends StatelessWidget {
     required this.date,
     required this.startTime,
     required this.endTime,
+    required this.patientName,
   }) : super(key: key);
 
   @override
@@ -27,11 +29,47 @@ class ExpandedCardWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppTheme.loginPageborderRadius),
           side: BorderSide(color: LightColors.kLightRed3)),
-      child: ExpansionTile(title: Text(title), children: [
-        Text(desc),
-        Text(formattedDate),
-        Text("${endTime.hour.toInt() - startTime.hour.toInt()} saatlik hizmet")
-      ]),
+      child: ExpansionTile(
+          subtitle: Container(
+            alignment: Alignment.center,
+            child: Text(
+              patientName,
+              style: AppTheme.homePageTextStyle.copyWith(fontSize: 14),
+            ),
+          ),
+          leading: Container(
+              padding: EdgeInsets.only(top: 8),
+              child: Icon(Icons.task_alt_outlined)),
+          title: Container(
+            alignment: Alignment.center,
+            child: Text(
+              title,
+              style: AppTheme.homePageTextStyle.copyWith(fontSize: 16),
+            ),
+          ),
+          children: [
+            Container(
+              child: Text(desc),
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Row(children: [
+                Container(
+                  child: Text(formattedDate),
+                  alignment: Alignment.centerLeft,
+                ),
+                Container(
+                  child: Text(
+                      "${endTime.hour.toInt() - startTime.hour.toInt()} saatlik hizmet"),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  alignment: Alignment.centerLeft,
+                )
+              ]),
+            )
+          ]),
     );
   }
 }

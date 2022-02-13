@@ -18,7 +18,9 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("Yapacağım Hizmetler"),
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: AppTheme.pagePadding,
@@ -30,6 +32,15 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
                   date: DateTime.now(),
                   startTime: DateTime.now(),
                   endTime: DateTime.now().add(Duration(hours: 5)),
+                  patientName: "Melih Taskin",
+                ),
+                ExpandedCardWidget(
+                  title: "Aşı İğnesi",
+                  desc: "Reçeteli Aşı İğnesi Vurulacaktır",
+                  date: DateTime.now(),
+                  startTime: DateTime.now(),
+                  endTime: DateTime.now().add(Duration(hours: 5)),
+                  patientName: "Melih Taskin",
                 )
               ],
             ),

@@ -177,6 +177,9 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: height * 0.02),
           InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName);
+            },
             child: TaskColumn(
               icon: Icons.blur_circular,
               iconBackgroundColor: LightColors.kDarkYellow,
@@ -186,6 +189,9 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: height * 0.02),
           InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, PageNames.kPlannedTasksScreenName);
+            },
             child: TaskColumn(
                 icon: Icons.check_circle_outline,
                 iconBackgroundColor: LightColors.kBlue,
