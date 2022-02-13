@@ -75,10 +75,15 @@ class ExpandedCardWidget extends StatelessWidget {
               width: 300,
               height: 200,
               child: GoogleMap(
+                  markers: {
+                    Marker(
+                        markerId: MarkerId("Location"),
+                        position: LatLng(41.02234864293248, 28.973015697286947))
+                  },
                   initialCameraPosition: CameraPosition(
-                target: LatLng(37.42796133580664, -122.085749655962),
-                zoom: 14.4746,
-              )),
+                    target: LatLng(41.0225311, 28.9719733),
+                    zoom: 14.4746,
+                  )),
             ),
           ]),
     );
