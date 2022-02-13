@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hemsirem/Theme/colors/light_colors.dart';
 import 'package:hemsirem/Theme/theme.dart';
+import 'package:intl/intl.dart';
+
+import '../Widgets/expanded_card.dart';
 
 class MyPlannedTasks extends StatefulWidget {
   const MyPlannedTasks({Key? key}) : super(key: key);
@@ -32,36 +35,5 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
             ),
           ),
         ));
-  }
-}
-
-class ExpandedCardWidget extends StatelessWidget {
-  final String title;
-  final String desc;
-  final DateTime date;
-  final DateTime startTime;
-  final DateTime endTime;
-
-  const ExpandedCardWidget({
-    Key? key,
-    required this.title,
-    required this.desc,
-    required this.date,
-    required this.startTime,
-    required this.endTime,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppTheme.loginPageborderRadius),
-          side: BorderSide(color: LightColors.kLightRed3)),
-      child: ExpansionTile(title: Text(title), children: [
-        Text("desc"),
-        Text('$date'),
-        Text("${endTime.hour.toDouble() - startTime.hour.toDouble()}'lik iş")
-      ]),
-    );
   }
 }
