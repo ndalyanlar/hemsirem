@@ -28,32 +28,33 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: LightColors.kLightRed2,
         body: Container(
-            width: double.infinity,
-            color: LightColors.kLightWhite2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: height * 0.1),
-                Padding(
-                    padding: const EdgeInsets.only(left: 32),
-                    child: Text(
-                      "Giriş",
-                      style: TextStyle(
-                          color: LightColors.kLoginTextColor, fontSize: 48),
-                    )),
-                SizedBox(height: height * 0.015),
-                Padding(
-                  padding: const EdgeInsets.only(left: 32.0),
+          width: double.infinity,
+          color: LightColors.kLightWhite2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: height * 0.1),
+              Padding(
+                  padding: const EdgeInsets.only(left: 32),
                   child: Text(
-                    "Hoş Geldiniz!",
+                    "Giriş",
                     style: TextStyle(
-                        color: LightColors.kLoginTextColor, fontSize: 24),
-                  ),
+                        color: LightColors.kLoginTextColor, fontSize: 48),
+                  )),
+              SizedBox(height: height * 0.015),
+              Padding(
+                padding: const EdgeInsets.only(left: 32.0),
+                child: Text(
+                  "Hoş Geldiniz!",
+                  style: TextStyle(
+                      color: LightColors.kLoginTextColor, fontSize: 24),
                 ),
-                SizedBox(height: height * 0.045),
-                buildMain()
-              ],
-            )));
+              ),
+              SizedBox(height: height * 0.045),
+              buildMain()
+            ],
+          ),
+        ));
   }
 
   Expanded buildMain() {
@@ -80,7 +81,7 @@ class LoginPage extends StatelessWidget {
                 return Column(
                   children: [
                     buildRow(provider, hastaRole, hemsireRole),
-                    const BuildForm(),
+                    BuildForm(),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     buildRegisterButton(provider, hastaRole, context),
                     SizedBox(
@@ -91,9 +92,8 @@ class LoginPage extends StatelessWidget {
                       width: 100,
                       height: 100,
                     ),
-                    const Text("HEMŞİREM",
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 24))
+                    Text("HEMŞİREM",
+                        style: TextStyle(color: Colors.white, fontSize: 24))
                   ],
                 );
               },
@@ -203,20 +203,19 @@ class _BuildFormState extends ConsumerState<BuildForm> {
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
+            height: height * 0.01,
           ),
           Container(
-            padding:
-                const EdgeInsets.only(right: 15, left: 15, top: 0, bottom: 0),
+            padding: EdgeInsets.only(right: 15, left: 15, top: 0, bottom: 0),
             decoration: BoxDecoration(
                 color: LightColors.kLightWhite2,
                 borderRadius:
                     BorderRadius.circular(AppTheme.loginPageborderRadius),
                 boxShadow: [
-                  const BoxShadow(
+                  BoxShadow(
                       color: Colors.black12,
                       blurRadius: 20,
-                      offset: const Offset(0, 10))
+                      offset: Offset(0, 10))
                 ]),
             child: TextFormField(
               keyboardType: TextInputType.phone,
@@ -231,11 +230,10 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                 }
                 return null;
               },
-              decoration: const InputDecoration(
-                  errorStyle: const TextStyle(fontSize: 12),
+              decoration: InputDecoration(
                   labelText: "Telefon Numarasi Giriniz",
                   labelStyle: TextStyle(
-                    color: Colors.black26,
+                    color: LightColors.kLoginTextColor,
                     fontSize: 16,
                   ),
                   border: InputBorder.none),
@@ -248,22 +246,23 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             height: height * 0.025,
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
             decoration: BoxDecoration(
-                color: Colors.white70,
-                borderRadius: BorderRadius.circular(10),
+                color: LightColors.kLightWhite2,
+                borderRadius:
+                    BorderRadius.circular(AppTheme.loginPageborderRadius),
                 boxShadow: [
-                  const BoxShadow(
+                  BoxShadow(
                       color: Colors.black12,
                       blurRadius: 20,
                       offset: Offset(0, 10))
                 ]),
             child: TextFormField(
               obscureText: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: "Şifrenizi giriniz",
                 labelStyle:
-                    const TextStyle(color: Colors.black38, fontSize: 16),
+                    TextStyle(color: LightColors.kLoginTextColor, fontSize: 16),
                 border: InputBorder.none,
               ),
               validator: (value) {
@@ -282,7 +281,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
             height: height * 0.02,
           ),
           TextButton(
-              style: const ButtonStyle(
+              style: ButtonStyle(
                 splashFactory: NoSplash.splashFactory,
               ),
               onPressed: () {},
@@ -323,12 +322,12 @@ class _BuildFormState extends ConsumerState<BuildForm> {
 
                   MyUser user = ((data.data() ??
                       MyUser(
-                          role: '',
                           name: "",
                           surName: "",
                           phone: "",
                           password: "",
-                          age: 0)) as MyUser);
+                          age: 0,
+                          role: '')) as MyUser);
 
                   if (user.password == _controllerPass.text &&
                       _controllerPhone.text.contains(user.phone)) {
@@ -341,7 +340,6 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                     Navigator.pushReplacementNamed(
                         context, PageNames.kHomeScreenName,
                         arguments: user);
-
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       dismissDirection: DismissDirection.startToEnd,
                       content: Center(
@@ -356,7 +354,7 @@ class _BuildFormState extends ConsumerState<BuildForm> {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       // dismissDirection: DismissDirection.vertical,
                       content: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.1,
+                        height: height * 0.1,
                         child: Text(
                           'Giriş Hatalı',
                           textAlign: TextAlign.center,

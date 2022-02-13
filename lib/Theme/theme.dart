@@ -22,6 +22,11 @@ class AppTheme {
   static double loginPageborderRadius = 30;
 
   static ButtonStyle loginPageButtonStyle = ButtonStyle(
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(AppTheme.loginPageborderRadius),
+              side: BorderSide(color: Colors.red))),
       backgroundColor: MaterialStateProperty.all(Colors.white70),
       fixedSize: MaterialStateProperty.all(const Size.fromWidth(200)));
 }
