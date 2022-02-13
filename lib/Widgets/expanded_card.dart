@@ -42,13 +42,7 @@ class ExpandedCardWidget extends StatelessWidget {
               style: AppTheme.homePageTextStyle.copyWith(fontSize: 14),
             ),
           ),
-<<<<<<< HEAD
           leading: Container(padding: EdgeInsets.only(top: 8), child: icon),
-=======
-          leading: Container(
-              padding: const EdgeInsets.only(top: 8),
-              child: const Icon(Icons.timelapse)),
->>>>>>> e365503b4f78696e87fd4bf09e7577f19d206192
           title: Container(
             alignment: Alignment.center,
             child: Text(

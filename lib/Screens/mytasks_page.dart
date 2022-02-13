@@ -28,18 +28,13 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-<<<<<<< HEAD
           title: type == "ToDo"
               ? Text("Yapacağım Hizmetler")
               : Text("Yaptığım Hizmetler"),
-=======
-          title: const Text("Yapacağım Hizmetler"),
->>>>>>> e365503b4f78696e87fd4bf09e7577f19d206192
         ),
         body: SingleChildScrollView(
           child: Padding(
             padding: AppTheme.pagePadding,
-<<<<<<< HEAD
             child: type == "ToDo"
                 ? Column(
                     children: [
@@ -171,32 +166,6 @@ class _MyPlannedTasksState extends State<MyPlannedTasks> {
                       ),
                     ],
                   ),
-=======
-            child: Column(
-              children: [
-                ExpandedCardWidget(
-                  title: "İnsülin İğnesi",
-                  desc: "Reçeteli İnsülin İğnesi Vurulacaktır",
-                  date: DateTime.parse("20220202 1430"),
-                  startTime: DateTime.parse("20220202 1430"),
-                  endTime: DateTime.parse("20220202 1430")
-                      .add(const Duration(minutes: 15)),
-                  patientName: "Melih Taskin",
-                  location: const LatLng(41.02234864293248, 28.973015697286947),
-                ),
-                ExpandedCardWidget(
-                  title: "COVİD-19 Aşısı",
-                  desc: "Covid-19 Aşısı Vurulacaktır",
-                  date: DateTime.parse("20220211 1730"),
-                  startTime: DateTime.parse("20220211 1730"),
-                  endTime: DateTime.parse("20220211 1730")
-                      .add(const Duration(minutes: 5)),
-                  patientName: "Melih Taskin",
-                  location: const LatLng(41.02234874293148, 28.976015397287947),
-                )
-              ],
-            ),
->>>>>>> e365503b4f78696e87fd4bf09e7577f19d206192
           ),
         ));
   }
